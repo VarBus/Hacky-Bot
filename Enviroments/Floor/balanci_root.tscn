@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl6f513dy6fyg"]
+
+[ext_resource type="PackedScene" uid="uid://ctesl77h5j2ra" path="res://Enviroments/Floor/floor.tscn" id="1_cnfgo"]
+
+[node name="BalanciRoot" type="Node2D"]
+
+[node name="Pivot" type="StaticBody2D" parent="."]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Pivot"]
+node_a = NodePath("..")
+node_b = NodePath("../../Floor")
+
+[node name="Floor" parent="." instance=ExtResource("1_cnfgo")]

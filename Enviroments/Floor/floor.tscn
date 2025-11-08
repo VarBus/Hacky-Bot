@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctesl77h5j2ra"]
+
+[ext_resource type="Texture2D" uid="uid://bwq81ao50od8d" path="res://icon.svg" id="1_qpkae"]
+
+[sub_resource type="GDScript" id="GDScript_qpkae"]
+script/source = "extends RigidBody2D
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpkae"]
+size = Vector2(1075, 119)
+
+[node name="Floor" type="RigidBody2D"]
+gravity_scale = 2.0
+inertia = 250.0
+can_sleep = false
+linear_damp = 0.5
+angular_damp = 0.8
+script = SubResource("GDScript_qpkae")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(88.500015, 0)
+scale = Vector2(8.6484375, 1)
+texture = ExtResource("1_qpkae")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(87.5, 0.5)
+shape = SubResource("RectangleShape2D_qpkae")
