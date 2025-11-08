@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3yixoxwt4ab4"
-path="res://.godot/imported/karate.png-09f0cbf2a3f9404530e5ac33023352f3.ctex"
+uid="uid://b1uvruy8rhyt2"
+path="res://.godot/imported/camara.png-ae47c9f2c73dfd642432a85621d8c141.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/karate.png"
-dest_files=["res://.godot/imported/karate.png-09f0cbf2a3f9404530e5ac33023352f3.ctex"]
+source_file="res://Assets/Sprites/PlaceHolders/camara.png"
+dest_files=["res://.godot/imported/camara.png-ae47c9f2c73dfd642432a85621d8c141.ctex"]
 
 [params]
 
