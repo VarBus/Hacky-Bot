@@ -1,12 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://6ji8qd06lmf0"]
 
 [ext_resource type="PackedScene" uid="uid://dilb15hs6mn7w" path="res://Characters/hacky.tscn" id="1_j73mq"]
-[ext_resource type="PackedScene" uid="uid://bl6f513dy6fyg" path="res://Enviroments/Floor/balanci_root.tscn" id="2_j73mq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtstw"]
+size = Vector2(749, 20)
 
 [node name="World-1" type="Node2D"]
 
 [node name="Hacky" parent="." instance=ExtResource("1_j73mq")]
-position = Vector2(563, 9)
+position = Vector2(214, 32)
 
-[node name="BalanciRoot" parent="." instance=ExtResource("2_j73mq")]
-position = Vector2(509, 283)
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(467, 312)
+shape = SubResource("RectangleShape2D_qtstw")
