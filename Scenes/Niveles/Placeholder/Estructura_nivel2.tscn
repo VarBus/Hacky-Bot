@@ -1,49 +1,53 @@
-[gd_scene load_steps=4 format=3 uid="uid://cysq1s48mounf"]
+[gd_scene load_steps=5 format=3 uid="uid://coppkhpmjnfon"]
 
-[ext_resource type="Texture2D" uid="uid://bwq81ao50od8d" path="res://icon.svg" id="1_vgkiy"]
-[ext_resource type="PackedScene" uid="uid://ckkd1d3v1o5yc" path="res://Scenes/Enemies/Hack/EH_RobotDispara.tscn" id="2_bus6n"]
+[ext_resource type="Texture2D" uid="uid://bwq81ao50od8d" path="res://icon.svg" id="1_pwxj0"]
+[ext_resource type="PackedScene" uid="uid://bpctjn1urrb8v" path="res://Scenes/Enemies/Hack/EH_RobotCamara.tscn" id="2_3lbn0"]
+[ext_resource type="PackedScene" uid="uid://d2ihnytegg7om" path="res://Scenes/Player/Player.tscn" id="3_3lbn0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bus6n"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a83p1"]
 size = Vector2(127.2832, 113.68941)
 
-[node name="EstructuraNivel" type="Node2D"]
-
-[node name="EhRobotDispara" parent="." instance=ExtResource("2_bus6n")]
+[node name="EstructuraNivel2" type="Node2D"]
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(405.00006, 299.00006)
 scale = Vector2(14.710938, 1.2578125)
-texture = ExtResource("1_vgkiy")
+texture = ExtResource("1_pwxj0")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Icon"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/StaticBody2D"]
 position = Vector2(-0.051200867, 3.5776978)
-shape = SubResource("RectangleShape2D_bus6n")
+shape = SubResource("RectangleShape2D_a83p1")
 
 [node name="Icon2" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(394.00006, -368)
 rotation = 1.5707964
 scale = Vector2(9.765625, 1.2578125)
-texture = ExtResource("1_vgkiy")
+texture = ExtResource("1_pwxj0")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Icon2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Icon2/StaticBody2D"]
 position = Vector2(-0.051200867, 3.5776978)
-shape = SubResource("RectangleShape2D_bus6n")
+shape = SubResource("RectangleShape2D_a83p1")
 
 [node name="Icon3" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-75, -85.99994)
 rotation = 1.5707964
 scale = Vector2(9.765625, 1.2578125)
-texture = ExtResource("1_vgkiy")
+texture = ExtResource("1_pwxj0")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Icon3"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Icon3/StaticBody2D"]
 position = Vector2(-0.051200867, 3.5776978)
-shape = SubResource("RectangleShape2D_bus6n")
+shape = SubResource("RectangleShape2D_a83p1")
+
+[node name="EhRobotCamara" parent="." instance=ExtResource("2_3lbn0")]
+
+[node name="Player" parent="." instance=ExtResource("3_3lbn0")]
+position = Vector2(45, 207)
