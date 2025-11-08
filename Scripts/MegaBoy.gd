@@ -39,6 +39,8 @@ func _input(event):
 func activate():
 	if not active:
 		active = true
+		$Sprite2D.modulate = Color(1, 0.4, 0.4) # cambia de color al activarse
+		#$AnimationPlayer.play("wake_up")
 		print("Enemigo activado por teclado")
 
 		

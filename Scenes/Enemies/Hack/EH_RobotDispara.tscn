@@ -13,6 +13,7 @@ size = Vector2(127.2832, 113.68941)
 [node name="EhRobotDispara" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(365.5, 387.99997)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_mtrxg")
 
@@ -27,8 +28,8 @@ shape = SubResource("RectangleShape2D_ny0sw")
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(580, 594)
-scale = Vector2(9.765625, 1.2578125)
+position = Vector2(957.5, 1142)
+scale = Vector2(14.710938, 1.2578125)
 texture = ExtResource("2_ny0sw")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Icon"]
@@ -39,7 +40,7 @@ shape = SubResource("RectangleShape2D_4vkgy")
 
 [node name="Icon2" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(1213, 395.00003)
+position = Vector2(1957.5, 783.0001)
 rotation = 1.5707964
 scale = Vector2(9.765625, 1.2578125)
 texture = ExtResource("2_ny0sw")
@@ -52,7 +53,7 @@ shape = SubResource("RectangleShape2D_4vkgy")
 
 [node name="Icon3" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-45, 338.00006)
+position = Vector2(-36.49997, 726)
 rotation = 1.5707964
 scale = Vector2(9.765625, 1.2578125)
 texture = ExtResource("2_ny0sw")
