@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://crdbcsy8pioq2"]
+
+[ext_resource type="PackedScene" uid="uid://cysq1s48mounf" path="res://Scenes/Niveles/Placeholder/Estructura_nivel.tscn" id="1_o607w"]
+[ext_resource type="Texture2D" uid="uid://b1uvruy8rhyt2" path="res://Assets/Sprites/PlaceHolders/camara.png" id="2_7i6lr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0sht7"]
+
+[node name="EhRobotIman" type="Node2D"]
+
+[node name="EstructuraNivel" parent="." instance=ExtResource("1_o607w")]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(290.00003, 54)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_7i6lr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_0sht7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

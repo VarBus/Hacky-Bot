@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ckkd1d3v1o5yc"]
 
-[ext_resource type="Script" uid="uid://b7ibkcujfitia" path="res://Scripts/MegaBoy.gd" id="1_mtrxg"]
+[ext_resource type="Script" uid="uid://b7ibkcujfitia" path="res://Scripts/Enemies/MegaBoy.gd" id="1_mtrxg"]
 [ext_resource type="Texture2D" uid="uid://d3yixoxwt4ab4" path="res://Assets/Sprites/karate.png" id="1_xpnd8"]
 [ext_resource type="Texture2D" uid="uid://bwq81ao50od8d" path="res://icon.svg" id="2_ny0sw"]
 
@@ -13,8 +13,8 @@ size = Vector2(127.2832, 113.68941)
 [node name="EhRobotDispara" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(365.5, 387.99997)
-scale = Vector2(0.2, 0.2)
+position = Vector2(-49, -16.000008)
+scale = Vector2(0.1, 0.1)
 script = ExtResource("1_mtrxg")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
@@ -28,7 +28,7 @@ shape = SubResource("RectangleShape2D_ny0sw")
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(957.5, 1142)
+position = Vector2(405.00006, 299.00006)
 scale = Vector2(14.710938, 1.2578125)
 texture = ExtResource("2_ny0sw")
 
@@ -40,7 +40,7 @@ shape = SubResource("RectangleShape2D_4vkgy")
 
 [node name="Icon2" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(1957.5, 783.0001)
+position = Vector2(399, -369)
 rotation = 1.5707964
 scale = Vector2(9.765625, 1.2578125)
 texture = ExtResource("2_ny0sw")
@@ -53,7 +53,7 @@ shape = SubResource("RectangleShape2D_4vkgy")
 
 [node name="Icon3" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-36.49997, 726)
+position = Vector2(-75, -85.99994)
 rotation = 1.5707964
 scale = Vector2(9.765625, 1.2578125)
 texture = ExtResource("2_ny0sw")

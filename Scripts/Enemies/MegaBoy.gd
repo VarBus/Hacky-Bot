@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # Físicas
 var gravity = 900.0
-var speed = 120.0
+var speed = 60.0
 
 # Estado
 var active = false
@@ -39,8 +39,4 @@ func _input(event):
 func activate():
 	if not active:
 		active = true
-		$Sprite2D.modulate = Color(1, 0.4, 0.4) # cambia de color al activarse
-		#$AnimationPlayer.play("wake_up")
-		print("Enemigo activado por teclado")
-
-		
+		print("⚠️ Enemigo activado por teclado")
