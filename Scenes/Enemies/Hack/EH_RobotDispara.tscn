@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckkd1d3v1o5yc"]
+[gd_scene load_steps=7 format=3 uid="uid://ckkd1d3v1o5yc"]
 
 [ext_resource type="Script" uid="uid://b7ibkcujfitia" path="res://Scripts/MegaBoy.gd" id="1_mtrxg"]
 [ext_resource type="Texture2D" uid="uid://d3yixoxwt4ab4" path="res://Assets/Sprites/karate.png" id="1_xpnd8"]
@@ -7,12 +7,16 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ny0sw"]
 size = Vector2(757.50024, 154.99994)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mtrxg"]
+radius = 329.99997
+height = 999.9999
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4vkgy"]
 size = Vector2(127.2832, 113.68941)
 
-[node name="EhRobotDispara" type="Node2D"]
+[node name="EhRobotDispara" type="Node2D" groups=["Hack"]]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Hack"]]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_mtrxg")
 
@@ -24,6 +28,12 @@ texture = ExtResource("1_xpnd8")
 position = Vector2(1031.2499, 1559.9998)
 scale = Vector2(0.9999994, 0.9999994)
 shape = SubResource("RectangleShape2D_ny0sw")
+
+[node name="BodyCollider" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/BodyCollider"]
+position = Vector2(950, 1035)
+shape = SubResource("CapsuleShape2D_mtrxg")
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -62,3 +72,5 @@ texture = ExtResource("2_ny0sw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Icon3/StaticBody2D"]
 position = Vector2(-0.051200867, 3.5776978)
 shape = SubResource("RectangleShape2D_4vkgy")
+
+[connection signal="body_entered" from="CharacterBody2D/BodyCollider" to="CharacterBody2D" method="_on_body_collider_body_entered"]

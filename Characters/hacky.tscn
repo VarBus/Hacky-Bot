@@ -2,12 +2,10 @@
 
 [ext_resource type="Script" uid="uid://c4wsfcq7v3vcj" path="res://Scripts/hacky.gd" id="1_0ybgk"]
 [ext_resource type="Texture2D" uid="uid://bwq81ao50od8d" path="res://icon.svg" id="2_p8ypc"]
+[ext_resource type="PackedScene" uid="uid://bs00fude5qugd" path="res://Scenes/Items/Arrow/vector_creator.tscn" id="3_p8ypc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w8q3a"]
 size = Vector2(115, 120)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_0ybgk"]
-radius = 348.6617
 
 [node name="Hacky" type="CharacterBody2D"]
 floor_snap_length = 2.0
@@ -20,7 +18,7 @@ texture = ExtResource("2_p8ypc")
 position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_w8q3a")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="VectorCreator" parent="." instance=ExtResource("3_p8ypc")]
+position = Vector2(-2, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_0ybgk")
+[connection signal="vector_created" from="VectorCreator" to="." method="_on_vector_creator_vector_created"]

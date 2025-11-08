@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3teql46p5uxi"
-path="res://.godot/imported/flecha_azul.png-ea0efffe1ca85d981b15e0f5742c0203.ctex"
+uid="uid://cs886xvsf1sfj"
+path="res://.godot/imported/arrow.png-74d1e4e1fced075b4773e9c100ca2e65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://flecha_azul.png"
-dest_files=["res://.godot/imported/flecha_azul.png-ea0efffe1ca85d981b15e0f5742c0203.ctex"]
+source_file="res://Assets/Items/arrow.png"
+dest_files=["res://.godot/imported/arrow.png-74d1e4e1fced075b4773e9c100ca2e65.ctex"]
 
 [params]
 
