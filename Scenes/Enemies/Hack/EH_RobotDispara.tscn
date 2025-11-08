@@ -1,3 +1,64 @@
-[gd_scene format=3 uid="uid://ckkd1d3v1o5yc"]
+[gd_scene load_steps=6 format=3 uid="uid://ckkd1d3v1o5yc"]
+
+[ext_resource type="Script" uid="uid://b7ibkcujfitia" path="res://Scripts/MegaBoy.gd" id="1_mtrxg"]
+[ext_resource type="Texture2D" uid="uid://d3yixoxwt4ab4" path="res://Assets/Sprites/karate.png" id="1_xpnd8"]
+[ext_resource type="Texture2D" uid="uid://bwq81ao50od8d" path="res://icon.svg" id="2_ny0sw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ny0sw"]
+size = Vector2(757.50024, 154.99994)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vkgy"]
+size = Vector2(127.2832, 113.68941)
 
 [node name="EhRobotDispara" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_mtrxg")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(1144.9999, 1049.9999)
+texture = ExtResource("1_xpnd8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(1031.2499, 1559.9998)
+scale = Vector2(0.9999994, 0.9999994)
+shape = SubResource("RectangleShape2D_ny0sw")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(580, 594)
+scale = Vector2(9.765625, 1.2578125)
+texture = ExtResource("2_ny0sw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Icon"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+position = Vector2(-0.051200867, 3.5776978)
+shape = SubResource("RectangleShape2D_4vkgy")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1213, 395.00003)
+rotation = 1.5707964
+scale = Vector2(9.765625, 1.2578125)
+texture = ExtResource("2_ny0sw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Icon2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon2/StaticBody2D"]
+position = Vector2(-0.051200867, 3.5776978)
+shape = SubResource("RectangleShape2D_4vkgy")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-45, 338.00006)
+rotation = 1.5707964
+scale = Vector2(9.765625, 1.2578125)
+texture = ExtResource("2_ny0sw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Icon3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon3/StaticBody2D"]
+position = Vector2(-0.051200867, 3.5776978)
+shape = SubResource("RectangleShape2D_4vkgy")
