@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dilb15hs6mn7w"]
+
+[ext_resource type="Script" uid="uid://c4wsfcq7v3vcj" path="res://Scripts/hacky.gd" id="1_0ybgk"]
+[ext_resource type="Texture2D" uid="uid://bwq81ao50od8d" path="res://icon.svg" id="2_p8ypc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8q3a"]
+size = Vector2(115, 120)
+
+[node name="Hacky" type="CharacterBody2D"]
+script = ExtResource("1_0ybgk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_p8ypc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_w8q3a")
