@@ -49,8 +49,12 @@ func _input(event: InputEvent) -> void:
 func activate() -> void:
 	if not active:
 		active = true
+<<<<<<< HEAD
 <<<<<<< HEAD:Scripts/MegaBoy.gd
 		print("Enemigo activado")
 =======
+=======
+		$Sprite2D.modulate = Color(1, 0.4, 0.4) # cambia de color al activarse
+>>>>>>> ZtanQ
 		print("⚠️ Enemigo activado por teclado")
 >>>>>>> ZtanQ:Scripts/Enemies/MegaBoy.gd
