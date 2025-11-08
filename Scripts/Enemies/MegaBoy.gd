@@ -1,8 +1,13 @@
 extends CharacterBody2D
 
 # Físicas
+<<<<<<< HEAD:Scripts/MegaBoy.gd
 @export var gravity: float = 900.0
 @export var speed: float = 120.0
+=======
+var gravity = 900.0
+var speed = 60.0
+>>>>>>> ZtanQ:Scripts/Enemies/MegaBoy.gd
 
 # Estado
 var active := false
@@ -44,4 +49,8 @@ func _input(event: InputEvent) -> void:
 func activate() -> void:
 	if not active:
 		active = true
+<<<<<<< HEAD:Scripts/MegaBoy.gd
 		print("Enemigo activado")
+=======
+		print("⚠️ Enemigo activado por teclado")
+>>>>>>> ZtanQ:Scripts/Enemies/MegaBoy.gd

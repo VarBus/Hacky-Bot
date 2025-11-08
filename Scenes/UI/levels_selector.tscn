@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://do4e0wj14ydwv"]
+
+[ext_resource type="Script" uid="uid://6s745voq254h" path="res://scripts/UI/levels_selector.gd" id="1_g2pde"]
+[ext_resource type="FontFile" uid="uid://c8yuhivf2dij5" path="res://assets/fonts/Minecraft.ttf" id="1_opbx4"]
+
+[node name="levels_selector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g2pde")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13123989, 0.19845393, 0.3823703, 1)
+
+[node name="Building" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 147.0
+offset_top = -100.0
+offset_right = 247.0
+offset_bottom = 260.0
+rotation = -1.5707964
+pivot_offset = Vector2(50, 205)
+color = Color(0.3128146, 0.5182247, 0.98194224, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = -34.0
+offset_right = 158.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 65
+
+[node name="LevelSelector1" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_opbx4")
+text = "Level 1"
+
+[node name="LevelSelector2" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_opbx4")
+text = "Level 2"
+
+[node name="LevelSelector3" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_opbx4")
+text = "Level 3"
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 53.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("1_opbx4")
+text = "Back"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
