@@ -8,7 +8,7 @@ var is_open = false
 func _ready():
 	$Sprite2D.texture = puerta_cerrada
 	# Conectamos la señal del Area2D
-	$Area2D.body_entered.connect(_on_body_entered)
+	$StaticBody2D.body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
 	# Verificar si el que entra es el enemigo
