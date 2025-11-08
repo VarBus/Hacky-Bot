@@ -1,7 +1,91 @@
-[gd_scene load_steps=3 format=3 uid="uid://ceo1s0dhm1bk5"]
+[gd_scene load_steps=6 format=3 uid="uid://ceo1s0dhm1bk5"]
 
 [ext_resource type="Script" uid="uid://dm1rdn4x62dv8" path="res://scripts/UI/lost_screen.gd" id="1_fkn2w"]
 [ext_resource type="FontFile" uid="uid://c8yuhivf2dij5" path="res://assets/fonts/Minecraft.ttf" id="1_rpgw2"]
+
+[sub_resource type="Animation" id="Animation_fkn2w"]
+resource_name = "lost_screen_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LostLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer/RetryButton:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HBoxContainer/ExitButton:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_yewig"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LostLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer/RetryButton:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HBoxContainer/ExitButton:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u4q5h"]
+_data = {
+&"RESET": SubResource("Animation_yewig"),
+&"lost_screen_animation": SubResource("Animation_fkn2w")
+}
 
 [node name="LostScreen" type="Control"]
 layout_mode = 3
@@ -22,6 +106,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.44313726)
 
 [node name="LostLabel" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -54,13 +139,22 @@ grow_vertical = 2
 alignment = 1
 
 [node name="RetryButton" type="Button" parent="HBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rpgw2")
 theme_override_font_sizes/font_size = 16
 text = "Retry"
 
 [node name="ExitButton" type="Button" parent="HBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rpgw2")
 theme_override_font_sizes/font_size = 16
 text = "Exit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_u4q5h")
+}
+
+[connection signal="pressed" from="HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
