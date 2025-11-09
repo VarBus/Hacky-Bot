@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://6ji8qd06lmf0"]
+[gd_scene load_steps=6 format=3 uid="uid://6ji8qd06lmf0"]
 
 [ext_resource type="PackedScene" uid="uid://dilb15hs6mn7w" path="res://Characters/hacky.tscn" id="1_j73mq"]
 [ext_resource type="PackedScene" uid="uid://ckkd1d3v1o5yc" path="res://Scenes/Enemies/Hack/EH_RobotDispara.tscn" id="2_j73mq"]
+[ext_resource type="PackedScene" uid="uid://b0atlo13hupou" path="res://Scenes/Items/Iman/iman.tscn" id="2_qenw6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtstw"]
 size = Vector2(749, 20)
@@ -12,7 +13,7 @@ size = Vector2(20, 409)
 [node name="World-1" type="Node2D"]
 
 [node name="Hacky" parent="." instance=ExtResource("1_j73mq")]
-position = Vector2(241, 171)
+position = Vector2(259, 211)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -34,3 +35,7 @@ shape = SubResource("RectangleShape2D_j73mq")
 
 [node name="EhRobotDispara" parent="." instance=ExtResource("2_j73mq")]
 position = Vector2(-15, 84)
+
+[node name="Iman" parent="." instance=ExtResource("2_qenw6")]
+position = Vector2(314, 89)
+scale = Vector2(0.99999994, 0.99999994)

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0atlo13hupou"]
+
+[ext_resource type="Texture2D" uid="uid://gjakkjcj311s" path="res://Assets/Sprites/PlaceHolders/Iman.png" id="1_0jl5v"]
+[ext_resource type="Script" uid="uid://behjafbhjiu0y" path="res://Scripts/Objetos/iman.gd" id="1_puk7v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_puk7v"]
+size = Vector2(33, 13)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_twndu"]
+height = 224.0
+
+[node name="Iman" type="CharacterBody2D" groups=["hack"]]
+rotation = 3.1413405
+script = ExtResource("1_puk7v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_0jl5v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -10.5)
+shape = SubResource("RectangleShape2D_puk7v")
+
+[node name="GravityAreaPlayer" type="Area2D" parent="." groups=["Iman"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityAreaPlayer"]
+position = Vector2(0, -91)
+shape = SubResource("CapsuleShape2D_twndu")
+
+[node name="GravityTimer" type="Timer" parent="."]
+wait_time = 6.0
+
+[connection signal="body_entered" from="GravityAreaPlayer" to="." method="_on_gravity_area_player_body_entered"]
+[connection signal="body_exited" from="GravityAreaPlayer" to="." method="_on_gravity_area_player_body_exited"]
+[connection signal="timeout" from="GravityTimer" to="." method="_on_gravity_timer_timeout"]

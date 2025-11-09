@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="HackyBot"
+run/main_scene="uid://bk2tgufds8lf3"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,7 +21,6 @@ window/size/viewport_width=320
 window/size/viewport_height=240
 window/size/mode=3
 window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
 window/canvas_textures/default_texture_filter=0
 
 [global_group]

@@ -20,6 +20,6 @@ scale = Vector2(0.09999994, 0.09999994)
 shape = SubResource("RectangleShape2D_ny0sw")
 
 [node name="Cooldown" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 10.0
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

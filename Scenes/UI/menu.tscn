@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bk2tgufds8lf3"]
 
-[ext_resource type="Script" uid="uid://w6vydtmp3byt" path="res://scripts/UI/menu.gd" id="1_2tfbb"]
-[ext_resource type="FontFile" uid="uid://c8yuhivf2dij5" path="res://assets/fonts/Minecraft.ttf" id="1_u81ku"]
+[ext_resource type="Script" uid="uid://w6vydtmp3byt" path="res://Scripts/UI/menu.gd" id="1_2tfbb"]
+[ext_resource type="FontFile" uid="uid://c8yuhivf2dij5" path="res://Assets/fonts/Minecraft.ttf" id="1_u81ku"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2tfbb"]
 bg_color = Color(0.21467698, 0.24155122, 0.4129257, 1)
@@ -94,3 +94,4 @@ text = "Exit
 "
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
