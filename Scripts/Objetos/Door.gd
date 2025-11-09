@@ -12,7 +12,7 @@ func _ready():
 
 func _on_body_entered(body):
 	# Verificar si el que entra es el enemigo
-	if body.is_in_group("enemies"):
+	if body.is_in_group("hackable"):
 		open_door()
 
 func open_door():

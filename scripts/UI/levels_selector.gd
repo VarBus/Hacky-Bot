@@ -15,4 +15,4 @@ func _on_back_button_pressed():
 
 
 func _on_level_selector_1_pressed() -> void:
-	get_tree().change_scene_to_file("res://Worlds/world_1.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Niveles/Niveles GameJam/Nivel1.tscn")

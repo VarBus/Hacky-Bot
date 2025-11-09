@@ -1,7 +1,7 @@
 [gd_scene load_steps=32 format=3 uid="uid://dilb15hs6mn7w"]
 
 [ext_resource type="Script" uid="uid://c4wsfcq7v3vcj" path="res://Scripts/hacky.gd" id="1_0ybgk"]
-[ext_resource type="Texture2D" uid="uid://b640dcgp58kj6" path="res://assets/Sprites/player/player_jump.png" id="2_s61ve"]
+[ext_resource type="Texture2D" uid="uid://b640dcgp58kj6" path="res://Assets/Sprites/player/player_jump.png" id="2_s61ve"]
 [ext_resource type="Texture2D" uid="uid://dk4dirdc0eyxk" path="res://Assets/Sprites/player/player_idle.png" id="2_xrtjp"]
 [ext_resource type="PackedScene" uid="uid://bs00fude5qugd" path="res://Scenes/Items/Arrow/vector_creator.tscn" id="3_p8ypc"]
 [ext_resource type="Texture2D" uid="uid://cvkriv3hs46ga" path="res://Assets/Sprites/player/player_hack.png" id="3_s61ve"]
