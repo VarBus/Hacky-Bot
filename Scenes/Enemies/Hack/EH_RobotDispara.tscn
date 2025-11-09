@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ny0sw"]
 size = Vector2(757.50024, 154.99994)
 
-[node name="EhRobotDispara" type="CharacterBody2D"]
+[node name="EhRobotDispara" type="CharacterBody2D" groups=["hack"]]
 script = ExtResource("1_ny0sw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -18,3 +18,8 @@ texture = ExtResource("1_xpnd8")
 position = Vector2(54.124992, 139.99997)
 scale = Vector2(0.09999994, 0.09999994)
 shape = SubResource("RectangleShape2D_ny0sw")
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

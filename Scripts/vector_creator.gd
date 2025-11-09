@@ -112,18 +112,13 @@ func _clear() -> void:
 	vec_ws = Vector2.ZERO
 	_hit_info.clear()
 
-# --- NUEVO: Activa a "hack" tocados por el trazo usando un rectángulo rotado ---
 func _activate_hacks_between(a_ws: Vector2, b_ws: Vector2) -> void:
 	var seg := b_ws - a_ws
 	var length := seg.length()
 	if length < 1.0:
 		return
-
-	# Usamos un RectangleShape2D como "barra" sólida
 	var rect := RectangleShape2D.new()
 	rect.size = Vector2(length, collision_thickness)
-
-	# Centro y rotación del rectángulo
 	var center := (a_ws + b_ws) * 0.5
 	var rot := seg.angle()
 

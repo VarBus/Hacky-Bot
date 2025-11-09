@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dilb15hs6mn7w"]
+[gd_scene load_steps=6 format=3 uid="uid://dilb15hs6mn7w"]
 
 [ext_resource type="Script" uid="uid://c4wsfcq7v3vcj" path="res://Scripts/hacky.gd" id="1_0ybgk"]
 [ext_resource type="Texture2D" uid="uid://bwq81ao50od8d" path="res://icon.svg" id="2_p8ypc"]
@@ -7,7 +7,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w8q3a"]
 size = Vector2(115, 120)
 
-[node name="Hacky" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8ypc"]
+size = Vector2(152.5, 159)
+
+[node name="Hacky" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(0.3, 0.3)
 floor_snap_length = 2.0
 script = ExtResource("1_0ybgk")
 
@@ -21,4 +25,11 @@ shape = SubResource("RectangleShape2D_w8q3a")
 [node name="VectorCreator" parent="." instance=ExtResource("3_p8ypc")]
 position = Vector2(-2, 0)
 
+[node name="AreaCollisions" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCollisions"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_p8ypc")
+
 [connection signal="vector_created" from="VectorCreator" to="." method="_on_vector_creator_vector_created"]
+[connection signal="body_entered" from="AreaCollisions" to="." method="_on_area_collisions_body_entered"]
