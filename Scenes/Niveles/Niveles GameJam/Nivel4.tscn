@@ -35,7 +35,7 @@ position = Vector2(35, 211)
 [node name="Puerta_llegada2" parent="." instance=ExtResource("4_vll2c")]
 position = Vector2(280, 129)
 esta_bloqueada = true
-proximo_nivel_path = "res://Scenes/Niveles/Niveles GameJam/Nivel4.tscn"
+proximo_nivel_path = "res://Scenes/UI/win_screen.tscn"
 
 [node name="PlataformaHack" type="Sprite2D" parent="."]
 position = Vector2(197, 139.99998)
