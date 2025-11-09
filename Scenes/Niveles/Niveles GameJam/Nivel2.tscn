@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cemnb8mpnb7g7"]
+[gd_scene load_steps=4 format=3 uid="uid://cemnb8mpnb7g7"]
 
 [ext_resource type="PackedScene" uid="uid://dfkqgh10ip0tm" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_cavhk"]
 [ext_resource type="PackedScene" uid="uid://dilb15hs6mn7w" path="res://Characters/hacky.tscn" id="2_70iug"]
+[ext_resource type="PackedScene" uid="uid://bpctjn1urrb8v" path="res://Scenes/Enemies/Hack/EH_RobotCamara.tscn" id="3_70iug"]
 
 [node name="Nivel2" type="Node2D"]
 
 [node name="EstructuraNivel" parent="." instance=ExtResource("1_cavhk")]
 
 [node name="Hacky" parent="." instance=ExtResource("2_70iug")]
-position = Vector2(48, 211)
+position = Vector2(36, 214)
 scale = Vector2(1, 1)
+
+[node name="EhRobotCamara" parent="." instance=ExtResource("3_70iug")]
+position = Vector2(2, 92)

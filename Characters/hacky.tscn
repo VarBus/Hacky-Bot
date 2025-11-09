@@ -192,7 +192,6 @@ size = Vector2(152.5, 159)
 radius = 130.0
 
 [node name="Hacky" type="CharacterBody2D" groups=["player"]]
-scale = Vector2(0.3, 0.3)
 floor_snap_length = 2.0
 script = ExtResource("1_0ybgk")
 
