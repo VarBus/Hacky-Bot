@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://c6ige54ddocgq" path="res://Scripts/Objetos/platform_base.gd" id="1_ofjo6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sa81t"]
-size = Vector2(67, 5)
+size = Vector2(75, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofjo6"]
-size = Vector2(69, 7)
+size = Vector2(82, 22)
 
 [node name="PlatformBase" type="CharacterBody2D" groups=["platform"]]
 script = ExtResource("1_ofjo6")
@@ -18,13 +18,12 @@ scale = Vector2(0.05583332, 0.0037500104)
 texture = ExtResource("1_k4lt0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5000076, 0.5000057)
+position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_sa81t")
 
 [node name="Top_sensor" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top_sensor"]
-position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_ofjo6")
 
 [connection signal="body_entered" from="Top_sensor" to="." method="_on_top_sensor_body_entered"]
