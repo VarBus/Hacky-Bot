@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cemnb8mpnb7g7"]
+
+[ext_resource type="PackedScene" uid="uid://dfkqgh10ip0tm" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_cavhk"]
+[ext_resource type="PackedScene" uid="uid://dilb15hs6mn7w" path="res://Characters/hacky.tscn" id="2_70iug"]
+
+[node name="Nivel2" type="Node2D"]
+
+[node name="EstructuraNivel" parent="." instance=ExtResource("1_cavhk")]
+
+[node name="Hacky" parent="." instance=ExtResource("2_70iug")]
+position = Vector2(48, 211)
+scale = Vector2(1, 1)
