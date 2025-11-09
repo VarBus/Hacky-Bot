@@ -12,9 +12,9 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# --- IA de movimiento autónomo (cuando no está hackeado) ---
-	mover.begin_frame(is_on_floor(), delta)
-	velocity = mover.step(velocity, direction, is_on_floor(), delta)
-	move_and_slide()
+	#mover.begin_frame(is_on_floor(), delta)
+	#velocity = mover.step(velocity, direction, is_on_floor(), delta)
+	#move_and_slide()
 
 	if is_on_wall():
 		direction *= -1

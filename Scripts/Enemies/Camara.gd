@@ -1,43 +1,69 @@
 # CamaraSeguridad.gd
-extends Node2D
+# ¡YA NO ES Node2D, ahora es una HackableEntity!
+extends HackableEntity
 
-# ¡Creamos nuestra propia señal!
-# Cualquiera podrá escuchar cuando esta cámara detecte al jugador.
-signal player_detected
+# --- Referencias a Nodos ---
+# (Asegúrate de que los nombres coincidan con tu escena)
+@onready var vision_area: Area2D = $Vision_Area2D
+@onready var raycast: RayCast2D = $RayCast2D
+@onready var vision_visual = $Vision_Area2D/VisionConeVisual # Opcional, si lo tienes
 
-# Conectamos la señal del Area2D desde el editor.
-# Selecciona VisionConeArea, ve al panel "Nodo" > "Señales" y
-# haz doble clic en "body_entered". Conéctalo a este script.
-func _on_vision_area_2d_body_entered(body: Node2D) -> void:
-# Comprobamos si el cuerpo que entró está en el grupo "player"
+func _ready():
+	# Solo conectamos el área de visión (la de Game Over)
+	vision_area.body_entered.connect(_on_vision_area_body_entered)
+	
+	# Asignamos el nodo visual por código si no se hizo en el editor
+	if visual_node == null:
+		visual_node = $Sprite2D
+
+# --- LÓGICA 1: DETECCIÓN (GAME OVER) ---
+# Esto se mantiene igual.
+func _on_vision_area_body_entered(body: Node2D) -> void:
+	# Si la cámara está 'is_hacked', está desactivada
+	if is_hacked:
+		return
+
+	# Si es el jugador, comprobar RayCast y reiniciar
 	if body.is_in_group("player"):
+		raycast.target_position = body.global_position - global_position
+		raycast.force_raycast_update()
 		
-		# --- OPCIONAL PERO RECOMENDADO: Comprobar Línea de Visión ---
-		# Si la cámara puede ver a través de las paredes, es un mal juego.
-		# ¡Usaremos el RayCast2D!
-		
-		# Apunta el RayCast al centro del jugador
-		$RayCast2D.target_position = body.global_position - global_position
-		# Actualiza el raycast (solo es necesario en un frame)
-		$RayCast2D.force_raycast_update()
-		
-		# Si el rayo NO está colisionando con nada (o si lo que golpea es el jugador)
-		# (Aquí asumimos que las paredes son StaticBody2D)
-		if not $RayCast2D.is_colliding() or $RayCast2D.get_collider() == body:
-			# ¡Te vemos!
-			print("¡JUGADOR DETECTADO!")
-			
-			# Emitimos nuestra señal personalizada
-			player_detected.emit()
-			
-			# O, para una acción simple (como pediste):
-			# get_tree().reload_current_scene() # Reinicia el nivel
+		if not raycast.is_colliding() or raycast.get_collider() == body:
+			print("¡JUGADOR DETECTADO! Reiniciando nivel...")
+			get_tree().reload_current_scene()
 		else:
-			# Hay una pared en medio. Falsa alarma.
-			pass
-		# -----------------------------------------------------------
+			pass # Falsa alarma (detrás de pared)
+
+# --- LÓGICA 2: HACKEO (¡LA PARTE NUEVA!) ---
+# Sobrescribimos la función de la clase base HackableEntity
+func take_control(player_node) -> void:
+	# 1. Llama a la función base para poner is_hacked = true
+	super.take_control(player_node) 
+	
+	# 2. Llama a la función de desactivación
+	disable_camera()
+
+# --- FUNCIÓN DE DESACTIVACIÓN ---
+# Esta función apaga la cámara permanentemente
+func disable_camera():
+	print("¡Cámara hackeada y desactivada!")
+	
+	# Apagamos el cono de visión (ya no detecta)
+	vision_area.monitoring = false 
+	raycast.enabled = false
+	
+	# Ocultamos el cono visual
+	if vision_visual:
+		vision_visual.visible = false
+	
+	# Cambiamos el color de la cámara (además del 'select')
+	if has_node("Sprite2D"):
+		$Sprite2D.modulate = Color.GRAY
 		
-		# Si no usas el RayCast (versión simple), solo haz esto:
-		# print("¡JUGADOR DETECTADO!")
-		# player_detected.emit()
-		# get_tree().reload_current_scene()
+	# Nos aseguramos de quitar el resaltado rojo
+	deselect()
+
+# --- NOTA IMPORTANTE ---
+# Ya no necesitamos _process(), _on_interaction_body_entered(), 
+# ni _on_interaction_body_exited() porque la detección y
+# la llamada a take_control() la hace el JUGADOR.

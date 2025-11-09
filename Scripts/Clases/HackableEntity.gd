@@ -25,6 +25,7 @@ func deselect() -> void:
 # Pasamos 'player_node' para que la entidad sepa quién la controla
 func take_control(player_node) -> void:
 	if is_hacked: return
+	visual_node.modulate = Color.AQUA
 	
 	controller = player_node
 	is_hacked = true
