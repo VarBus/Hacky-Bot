@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://cfsyom2aujj5k"]
+
+[ext_resource type="Texture2D" uid="uid://d0dets1ao1boi" path="res://Assets/Sprites/PlaceHolders/0x72_16x16RobotTileset.v1.png" id="1_71ujy"]
+[ext_resource type="Script" uid="uid://dan4myjwccrf0" path="res://Scripts/Enemies/patrol_enemy.gd" id="1_gju12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gju12"]
+atlas = ExtResource("1_71ujy")
+region = Rect2(208, 112, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7dm6"]
+atlas = ExtResource("1_71ujy")
+region = Rect2(224, 112, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26xud"]
+atlas = ExtResource("1_71ujy")
+region = Rect2(240, 112, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22qiy"]
+atlas = ExtResource("1_71ujy")
+region = Rect2(256, 112, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wp11n"]
+atlas = ExtResource("1_71ujy")
+region = Rect2(288, 112, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb8k5"]
+atlas = ExtResource("1_71ujy")
+region = Rect2(304, 112, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nehek"]
+atlas = ExtResource("1_71ujy")
+region = Rect2(320, 112, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sni5a"]
+atlas = ExtResource("1_71ujy")
+region = Rect2(336, 112, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jprl8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gju12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7dm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26xud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22qiy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wp11n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb8k5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nehek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sni5a")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gju12"]
+size = Vector2(15, 21)
+
+[node name="PatrolEnemy" type="CharacterBody2D" node_paths=PackedStringArray("visual_node") groups=["hackable"]]
+scale = Vector2(2, 2)
+script = ExtResource("1_gju12")
+visual_node = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_jprl8")
+autoplay = "default"
+frame_progress = 0.4561672
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -10.5)
+shape = SubResource("RectangleShape2D_gju12")

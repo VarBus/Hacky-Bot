@@ -1,7 +1,7 @@
 # ImanLevitar.gd (nodo que contiene el Area2D "GravityArea" y Timer "GravityTimer")
-extends CharacterBody2D
+extends HackableEntity
 
-@export var active: bool = false
+var active: bool = false
 @export var target_group: StringName = &"player"
 
 @export var hover_height: float = 120.0  
@@ -28,18 +28,34 @@ func _physics_process(delta: float) -> void:
 		var v_des = clamp(error * hover_gain, -ascend_speed, ascend_speed)
 		t.velocity.y = lerp(t.velocity.y, v_des, clamp(hover_damp * delta, 0.0, 1.0))
 
+# Esta función es llamada por el jugador cuando está hackeando este objeto
+func _handle_hacked_input(delta: float) -> void:
+	# No hacemos nada con 'delta', solo nos importa el input
+	
+	# Si el jugador pulsa "shoot", activamos el imán
+	if Input.is_action_just_pressed("shoot"):
+		activate()
+
 func activate() -> void:
 	if active: return
 	active = true
-	if has_node("Sprite2D"): 
-		$Sprite2D.modulate = Color(1, 0.4, 0.4)
-		$GravityTimer.start()
+	if visual_node:
+		visual_node.modulate = Color(1, 0.4, 0.4) # Color "activo"
+	$GravityTimer.start()
 
 func deactivate() -> void:
 	if not active: return
 	active = false
-	if has_node("Sprite2D"): 
-		$Sprite2D.modulate = Color(1, 1, 1)
+	if visual_node:
+		# Al desactivar, comprobamos si el jugador SIGUE apuntándonos/hackeándonos.
+		# Si 'is_hacked' es true, volvemos al color de selección (CRIMSON).
+		# Si es false, volvemos al color normal (WHITE).
+		# La clase base 'HackableEntity' maneja los colores de selección,
+		# así que podemos llamar a sus funciones.
+		if is_hacked:
+			select() # Llama a la función de la base (pone CRIMSON)
+		else:
+			deselect() # Llama a la función de la base (pone WHITE)
 	for t in _inside:
 		if is_instance_valid(t) and t.has_meta("prev_snap"):
 			t.floor_snap_length = t.get_meta("prev_snap")
