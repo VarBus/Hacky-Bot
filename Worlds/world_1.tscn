@@ -12,19 +12,25 @@ size = Vector2(20, 409)
 [node name="World-1" type="Node2D"]
 
 [node name="Hacky" parent="." instance=ExtResource("1_j73mq")]
-position = Vector2(456, 94)
+position = Vector2(241, 171)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(467, 312)
+position = Vector2(306, 248)
 shape = SubResource("RectangleShape2D_qtstw")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." groups=["Muro"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(80, 120)
+position = Vector2(-58, 34)
+shape = SubResource("RectangleShape2D_j73mq")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." groups=["Muro"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(374, 31)
 shape = SubResource("RectangleShape2D_j73mq")
 
 [node name="EhRobotDispara" parent="." instance=ExtResource("2_j73mq")]
-position = Vector2(19, -92)
+position = Vector2(-15, 84)

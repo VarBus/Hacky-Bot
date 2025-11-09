@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6u1ge760vlyl"]
 
-[ext_resource type="Script" uid="uid://c8ykb4qxhqnv3" path="res://scripts/UI/pause_menu.gd" id="1_bl585"]
-[ext_resource type="FontFile" uid="uid://c8yuhivf2dij5" path="res://assets/fonts/Minecraft.ttf" id="1_qo2fb"]
+[ext_resource type="Script" uid="uid://c8ykb4qxhqnv3" path="res://Scripts/UI/pause_menu.gd" id="1_bl585"]
+[ext_resource type="FontFile" uid="uid://c8yuhivf2dij5" path="res://Assets/fonts/Minecraft.ttf" id="1_qo2fb"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
