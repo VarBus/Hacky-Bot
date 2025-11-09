@@ -1,7 +1,7 @@
 [gd_scene load_steps=32 format=3 uid="uid://dilb15hs6mn7w"]
 
 [ext_resource type="Script" uid="uid://c4wsfcq7v3vcj" path="res://Scripts/hacky.gd" id="1_0ybgk"]
-[ext_resource type="Texture2D" uid="uid://dhwblfnpdc6u3" path="res://Assets/Sprites/player/player_jumo.png" id="2_s61ve"]
+[ext_resource type="Texture2D" uid="uid://b640dcgp58kj6" path="res://assets/Sprites/player/player_jump.png" id="2_s61ve"]
 [ext_resource type="Texture2D" uid="uid://dk4dirdc0eyxk" path="res://Assets/Sprites/player/player_idle.png" id="2_xrtjp"]
 [ext_resource type="PackedScene" uid="uid://bs00fude5qugd" path="res://Scenes/Items/Arrow/vector_creator.tscn" id="3_p8ypc"]
 [ext_resource type="Texture2D" uid="uid://cvkriv3hs46ga" path="res://Assets/Sprites/player/player_hack.png" id="3_s61ve"]
@@ -9,11 +9,11 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0vtc6"]
 atlas = ExtResource("2_s61ve")
-region = Rect2(0, 64, 32, 32)
+region = Rect2(0, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qnf5x"]
 atlas = ExtResource("2_s61ve")
-region = Rect2(0, 96, 32, 32)
+region = Rect2(64, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bvqhm"]
 atlas = ExtResource("2_xrtjp")
@@ -55,13 +55,9 @@ region = Rect2(0, 128, 64, 64)
 atlas = ExtResource("3_s61ve")
 region = Rect2(64, 128, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3ecss"]
-atlas = ExtResource("2_s61ve")
-region = Rect2(0, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ucxf"]
 atlas = ExtResource("2_s61ve")
-region = Rect2(0, 32, 32, 32)
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cd157"]
 atlas = ExtResource("4_0vtc6")
@@ -150,14 +146,11 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3ecss")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_0ucxf")
 }],
 "loop": false,
 "name": &"jump",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -195,6 +188,9 @@ size = Vector2(19.999998, 23.333332)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8ypc"]
 size = Vector2(152.5, 159)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_s61ve"]
+radius = 130.0
+
 [node name="Hacky" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(0.3, 0.3)
 floor_snap_length = 2.0
@@ -203,7 +199,7 @@ script = ExtResource("1_0ybgk")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_qnf5x")
-animation = &"hack"
+animation = &"jump"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -211,6 +207,7 @@ position = Vector2(7.947286e-07, -11.666666)
 shape = SubResource("RectangleShape2D_w8q3a")
 
 [node name="VectorCreator" parent="." instance=ExtResource("3_p8ypc")]
+visible = false
 position = Vector2(-2, 0)
 
 [node name="AreaCollisions" type="Area2D" parent="."]
@@ -219,6 +216,17 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCollisions"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_p8ypc")
+
+[node name="HackDetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HackDetectionArea"]
+shape = SubResource("CircleShape2D_s61ve")
+
+[node name="HackingLine" type="Line2D" parent="."]
+modulate = Color(6.256998e-07, 0.6716156, 0.38577756, 1)
+z_index = 30
+position = Vector2(3.3333333, -33.333332)
+width = 1.0
 
 [connection signal="vector_created" from="VectorCreator" to="." method="_on_vector_creator_vector_created"]
 [connection signal="body_entered" from="AreaCollisions" to="." method="_on_area_collisions_body_entered"]

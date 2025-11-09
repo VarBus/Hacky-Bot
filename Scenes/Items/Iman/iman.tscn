@@ -9,9 +9,10 @@ size = Vector2(33, 13)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_twndu"]
 height = 224.0
 
-[node name="Iman" type="CharacterBody2D" groups=["hack"]]
+[node name="Iman" type="CharacterBody2D" node_paths=PackedStringArray("visual_node") groups=["hackable"]]
 rotation = 3.1413405
 script = ExtResource("1_puk7v")
+visual_node = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

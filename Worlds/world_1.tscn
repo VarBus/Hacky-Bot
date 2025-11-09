@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://6ji8qd06lmf0"]
+[gd_scene load_steps=8 format=3 uid="uid://6ji8qd06lmf0"]
 
 [ext_resource type="PackedScene" uid="uid://dilb15hs6mn7w" path="res://Characters/hacky.tscn" id="1_j73mq"]
 [ext_resource type="PackedScene" uid="uid://ckkd1d3v1o5yc" path="res://Scenes/Enemies/Hack/EH_RobotDispara.tscn" id="2_j73mq"]
 [ext_resource type="PackedScene" uid="uid://b0atlo13hupou" path="res://Scenes/Items/Iman/iman.tscn" id="2_qenw6"]
+[ext_resource type="PackedScene" uid="uid://cfsyom2aujj5k" path="res://Scenes/Enemies/Hack/PatrolEnemy.tscn" id="4_p3r1e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtstw"]
 size = Vector2(749, 20)
@@ -10,10 +11,13 @@ size = Vector2(749, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j73mq"]
 size = Vector2(20, 409)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3r1e"]
+size = Vector2(212, 17)
+
 [node name="World-1" type="Node2D"]
 
 [node name="Hacky" parent="." instance=ExtResource("1_j73mq")]
-position = Vector2(259, 211)
+position = Vector2(99, 135)
 scale = Vector2(1, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -34,9 +38,19 @@ shape = SubResource("RectangleShape2D_j73mq")
 position = Vector2(374, 31)
 shape = SubResource("RectangleShape2D_j73mq")
 
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(0, 155)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(106, 0)
+shape = SubResource("RectangleShape2D_p3r1e")
+
 [node name="EhRobotDispara" parent="." instance=ExtResource("2_j73mq")]
-position = Vector2(111, 237)
+position = Vector2(256, 235)
 
 [node name="Iman" parent="." instance=ExtResource("2_qenw6")]
 position = Vector2(314, 89)
 scale = Vector2(0.99999994, 0.99999994)
+
+[node name="PatrolEnemy" parent="." instance=ExtResource("4_p3r1e")]
+position = Vector2(48, 237)
