@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bwq81ao50od8d" path="res://icon.svg" id="1_pwxj0"]
 [ext_resource type="PackedScene" uid="uid://bpctjn1urrb8v" path="res://Scenes/Enemies/Hack/EH_RobotCamara.tscn" id="2_3lbn0"]
-[ext_resource type="PackedScene" uid="uid://d2ihnytegg7om" path="res://Scenes/Player/Player.tscn" id="3_3lbn0"]
+[ext_resource type="PackedScene" path="res://scenes/Player/Player.tscn" id="3_3lbn0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a83p1"]
 size = Vector2(127.2832, 113.68941)

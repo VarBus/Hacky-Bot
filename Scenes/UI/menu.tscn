@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bk2tgufds8lf3"]
 
-[ext_resource type="Script" uid="uid://w6vydtmp3byt" path="res://Scripts/UI/menu.gd" id="1_2tfbb"]
-[ext_resource type="FontFile" uid="uid://c8yuhivf2dij5" path="res://Assets/fonts/Minecraft.ttf" id="1_u81ku"]
+[ext_resource type="Script" uid="uid://w6vydtmp3byt" path="res://Scripts/UI/menu.gd" id="1_uk6bn"]
+[ext_resource type="FontFile" uid="uid://c8yuhivf2dij5" path="res://Assets/fonts/Minecraft.ttf" id="2_wuk0b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2tfbb"]
 bg_color = Color(0.21467698, 0.24155122, 0.4129257, 1)
@@ -35,7 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2tfbb")
+script = ExtResource("1_uk6bn")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -47,7 +47,7 @@ offset_top = 27.0
 offset_right = 24.5
 offset_bottom = 50.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_u81ku")
+theme_override_fonts/font = ExtResource("2_wuk0b")
 text = "Hacky"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -67,7 +67,7 @@ grow_vertical = 2
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_u81ku")
+theme_override_fonts/font = ExtResource("2_wuk0b")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2tfbb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_u81ku")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2un8v")
@@ -76,7 +76,7 @@ text = "Play"
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(80, 30)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_u81ku")
+theme_override_fonts/font = ExtResource("2_wuk0b")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2tfbb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_u81ku")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2un8v")
@@ -86,7 +86,7 @@ text = "Options
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_u81ku")
+theme_override_fonts/font = ExtResource("2_wuk0b")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2tfbb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_u81ku")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2un8v")

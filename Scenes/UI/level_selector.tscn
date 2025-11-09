@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cpandgxj5h14i"]
 
-[ext_resource type="FontFile" uid="uid://c8yuhivf2dij5" path="res://assets/fonts/Minecraft.ttf" id="1_d4xw8"]
-[ext_resource type="Script" uid="uid://y3whp8dyvogv" path="res://scripts/UI/level_selector.gd" id="1_mefls"]
+[ext_resource type="FontFile" uid="uid://c8yuhivf2dij5" path="res://Assets/fonts/Minecraft.ttf" id="1_d4xw8"]
+[ext_resource type="Script" uid="uid://y3whp8dyvogv" path="res://Scripts/UI/level_selector.gd" id="1_mefls"]
 
 [sub_resource type="Animation" id="Animation_d4xw8"]
 resource_name = "select_level"
