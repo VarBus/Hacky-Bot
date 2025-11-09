@@ -17,6 +17,11 @@ var is_hacking: bool = false
 var is_landing: bool = false
 var was_in_air: bool = false
 
+@export_group("Wall Jump")
+@export var wall_jump_speed: float = 400.0 # Fuerza vertical del salto
+@export var wall_push_speed: float = 400.0 # Fuerza horizontal (para alejarte)
+@export var wall_slide_gravity: float = 200.0 # Gravedad reducida al deslizarte
+
 func _ready() -> void:
 	$HackDetectionArea.body_entered.connect(_on_hack_area_body_entered)
 	$HackDetectionArea.body_exited.connect(_on_hack_area_body_exited)

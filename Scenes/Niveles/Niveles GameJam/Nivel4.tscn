@@ -1,3 +1,53 @@
-[gd_scene format=3 uid="uid://bc4idosleg6f2"]
+[gd_scene load_steps=9 format=3 uid="uid://bc4idosleg6f2"]
+
+[ext_resource type="PackedScene" uid="uid://dfkqgh10ip0tm" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_5ikkj"]
+[ext_resource type="Texture2D" uid="uid://bkrxhsfi5igll" path="res://Assets/Sprites/objetos/RECTANGULO LARGO.png" id="2_wdijf"]
+[ext_resource type="PackedScene" uid="uid://dilb15hs6mn7w" path="res://Characters/hacky.tscn" id="3_08vis"]
+[ext_resource type="PackedScene" uid="uid://c5wnr4u6rh07c" path="res://Scenes/Objetos/Puerta.tscn" id="4_vll2c"]
+[ext_resource type="Texture2D" uid="uid://dkm5bu0103yig" path="res://Assets/Sprites/objetos/plataforma final.png" id="5_rx3vp"]
+[ext_resource type="PackedScene" uid="uid://cfsyom2aujj5k" path="res://Scenes/Enemies/Hack/PatrolEnemy.tscn" id="6_6dg4q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vll2c"]
+size = Vector2(131.11108, 40.000004)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rx3vp"]
+size = Vector2(99.04761, 15.714279)
 
 [node name="Nivel4" type="Node2D"]
+
+[node name="EstructuraNivel" parent="." instance=ExtResource("1_5ikkj")]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(84, 154)
+rotation = 1.5707964
+scale = Vector2(0.9, 0.7)
+texture = ExtResource("2_wdijf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2/StaticBody2D"]
+position = Vector2(1.1111298, 0)
+shape = SubResource("RectangleShape2D_vll2c")
+
+[node name="Hacky" parent="." instance=ExtResource("3_08vis")]
+position = Vector2(35, 211)
+
+[node name="Puerta_llegada2" parent="." instance=ExtResource("4_vll2c")]
+position = Vector2(280, 129)
+esta_bloqueada = true
+proximo_nivel_path = "res://Scenes/Niveles/Niveles GameJam/Nivel4.tscn"
+
+[node name="PlataformaHack" type="Sprite2D" parent="."]
+position = Vector2(197, 139.99998)
+rotation = 3.1415927
+scale = Vector2(2.1, 0.7)
+texture = ExtResource("5_rx3vp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PlataformaHack"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaHack/StaticBody2D"]
+position = Vector2(-1.9047546, -2.1428833)
+shape = SubResource("RectangleShape2D_rx3vp")
+
+[node name="PatrolEnemy" parent="." instance=ExtResource("6_6dg4q")]
+position = Vector2(201, 144)
