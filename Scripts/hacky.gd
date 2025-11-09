@@ -17,6 +17,18 @@ var is_hacking: bool = false
 var is_landing: bool = false
 var was_in_air: bool = false
 
+# --- NUEVO: Variables de Sonido ---
+@onready var SfxWalk: AudioStreamPlayer2D = $SfxWalk
+@onready var SfxJump: AudioStreamPlayer2D = $SfxJump
+@onready var SfxHack: AudioStreamPlayer2D = $SfxHack
+@onready var SfxIdle: AudioStreamPlayer2D = $SfxIdle # Descomenta si lo usas
+
+@export_group("Sound Pitches")
+@export var pitch_variations_walk: Array[float] = [0.95, 1.0, 1.05]
+@export var pitch_variations_jump: Array[float] = [0.9, 1.0, 1.1]
+@export var pitch_variations_hack: Array[float] = [0.9, 1.0, 1.1]
+@export var pitch_variations_idle: Array[float] = [1.0] # Descomenta si lo usas
+
 # --- NUEVAS VARIABLES ---
 @export_group("Wall Jump")
 @export var wall_jump_speed: float = 400.0 # Fuerza vertical del salto
@@ -109,6 +121,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = -wall_jump_speed 
 		# Aplicamos la fuerza horizontal para empujarte LEJOS de la pared
 		velocity.x = wall_normal.x * wall_push_speed
+		play_sfx_random(SfxJump, pitch_variations_jump)
 
 	# Salto de altura variable (sin cambios)
 	if Input.is_action_just_released("ui_accept") and velocity.y < 0.0:
@@ -122,13 +135,21 @@ func _physics_process(delta: float) -> void:
 	# 	anim_sprite.play("wall_slide")
 	elif not is_on_floor_now:
 		anim_sprite.play("jump")
+		SfxWalk.stop()
+		SfxIdle.stop()
+		if was_in_air == false:
+			play_sfx_random(SfxJump, pitch_variations_jump) # AÑADIDO
 	elif was_in_air and is_on_floor_now:
 		is_landing = true
 		anim_sprite.play("aterrizaje")
 	elif dir != 0:
 		anim_sprite.play("walk")
+		SfxIdle.stop()
+		play_loop_sfx_random(SfxWalk, pitch_variations_walk)
 	else:
 		anim_sprite.play("default")
+		SfxWalk.stop()
+		play_loop_sfx_random(SfxIdle, pitch_variations_idle)
 
 	was_in_air = not is_on_floor_now
 	
@@ -265,3 +286,24 @@ func update_hacking_line_target():
 		update_hacking_line(target_entity)
 	else:
 		if hacking_line: hacking_line.hide()
+
+func play_sfx_random(audio_player: AudioStreamPlayer2D, pitches: Array[float]):
+	if pitches.is_empty():
+		audio_player.play() # Tocar con pitch normal si no hay array
+		return
+	
+	var random_pitch = pitches[randi() % pitches.size()]
+	audio_player.pitch_scale = random_pitch
+	audio_player.play() # 'play()' reinicia el sonido
+
+func play_loop_sfx_random(audio_player: AudioStreamPlayer2D, pitches: Array[float]):
+	if audio_player.is_playing():
+		return # Si ya está sonando, no hacer nada
+
+	if pitches.is_empty():
+		audio_player.play()
+		return
+
+	var random_pitch = pitches[randi() % pitches.size()]
+	audio_player.pitch_scale = random_pitch
+	audio_player.play()
