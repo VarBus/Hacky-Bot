@@ -26,7 +26,7 @@ text = "1:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_0uxbe")
-start_seconds = 10
+start_minutes = 1
 
 [node name="Cronometro" type="Timer" parent="."]
 autostart = true
