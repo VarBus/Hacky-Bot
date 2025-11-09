@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://6ji8qd06lmf0"]
+[gd_scene load_steps=10 format=3 uid="uid://6ji8qd06lmf0"]
 
 [ext_resource type="PackedScene" uid="uid://dilb15hs6mn7w" path="res://Characters/hacky.tscn" id="1_j73mq"]
 [ext_resource type="PackedScene" uid="uid://ckkd1d3v1o5yc" path="res://Scenes/Enemies/Hack/EH_RobotDispara.tscn" id="2_j73mq"]
 [ext_resource type="PackedScene" uid="uid://b0atlo13hupou" path="res://Scenes/Items/Iman/iman.tscn" id="2_qenw6"]
-[ext_resource type="PackedScene" uid="uid://cfsyom2aujj5k" path="res://Scenes/Enemies/Hack/PatrolEnemy.tscn" id="4_p3r1e"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemies/Hack/PatrolEnemy.tscn" id="4_p3r1e"]
+[ext_resource type="PackedScene" uid="uid://be30thu58fyd4" path="res://Scenes/UI/time.tscn" id="5_d51r2"]
+[ext_resource type="PackedScene" uid="uid://ugrolq2v6yxx" path="res://Scenes/Objetos/platform_base.tscn" id="6_a6m6e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtstw"]
 size = Vector2(749, 20)
@@ -54,3 +56,12 @@ scale = Vector2(0.99999994, 0.99999994)
 
 [node name="PatrolEnemy" parent="." instance=ExtResource("4_p3r1e")]
 position = Vector2(48, 237)
+
+[node name="Time" parent="." instance=ExtResource("5_d51r2")]
+offset_left = 293.0
+offset_top = 15.0
+offset_right = 293.0
+offset_bottom = 15.0
+
+[node name="PlatformBase" parent="." instance=ExtResource("6_a6m6e")]
+position = Vector2(303, 126)
