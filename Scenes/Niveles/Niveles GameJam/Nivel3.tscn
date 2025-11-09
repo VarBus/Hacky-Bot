@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://bu6xewy3rk6o"]
+
+[ext_resource type="PackedScene" uid="uid://dfkqgh10ip0tm" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_etjn4"]
+[ext_resource type="PackedScene" uid="uid://c5wnr4u6rh07c" path="res://Scenes/Objetos/Puerta.tscn" id="2_p4tdh"]
+[ext_resource type="Texture2D" uid="uid://bkrxhsfi5igll" path="res://Assets/Sprites/objetos/RECTANGULO LARGO.png" id="3_uqt5v"]
+[ext_resource type="PackedScene" uid="uid://dilb15hs6mn7w" path="res://Characters/hacky.tscn" id="4_v0amk"]
+[ext_resource type="Texture2D" uid="uid://dkm5bu0103yig" path="res://Assets/Sprites/objetos/plataforma final.png" id="5_uqt5v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0amk"]
+size = Vector2(130.13696, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqt5v"]
+size = Vector2(139, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4oud"]
+size = Vector2(126.71234, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3boac"]
+size = Vector2(97.85713, 18)
+
+[node name="Nivel3" type="Node2D"]
+
+[node name="EstructuraNivel" parent="." instance=ExtResource("1_etjn4")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(46, 73)
+scale = Vector2(0.292, 0.2)
+texture = ExtResource("3_uqt5v")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(-3.0517578e-05, -2.5)
+shape = SubResource("RectangleShape2D_v0amk")
+
+[node name="Hacky" parent="." instance=ExtResource("4_v0amk")]
+position = Vector2(47, 67)
+
+[node name="Puerta_llegada2" parent="." instance=ExtResource("2_p4tdh")]
+position = Vector2(276, 109)
+proximo_nivel_path = "res://Scenes/Niveles/Niveles GameJam/Nivel4.tscn"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Puerta_llegada2"]
+position = Vector2(-127.5, 15.5)
+shape = SubResource("RectangleShape2D_uqt5v")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(276, 123)
+scale = Vector2(0.292, 0.2)
+texture = ExtResource("3_uqt5v")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2/StaticBody2D"]
+position = Vector2(-1.7123413, -5)
+shape = SubResource("RectangleShape2D_w4oud")
+
+[node name="PlataformaHack" type="Sprite2D" parent="."]
+position = Vector2(151, 124)
+scale = Vector2(1.4, 1)
+texture = ExtResource("5_uqt5v")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PlataformaHack"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaHack/StaticBody2D"]
+position = Vector2(-1.7857132, 1)
+shape = SubResource("RectangleShape2D_3boac")

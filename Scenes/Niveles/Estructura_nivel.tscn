@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfkqgh10ip0tm"]
+
+[ext_resource type="Texture2D" uid="uid://dqc3fvyttljev" path="res://Assets/backgrounds/fondo final.jpg" id="1_v64tr"]
+[ext_resource type="Texture2D" uid="uid://cj5wo65tixb2v" path="res://Assets/backgrounds/MINIATURA borde.png" id="2_v64tr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v64tr"]
+size = Vector2(321, 20)
+
+[node name="EstructuraNivel" type="Node2D"]
+
+[node name="Fondo" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(160, 118)
+scale = Vector2(0.59, 0.59)
+texture = ExtResource("1_v64tr")
+
+[node name="Marco" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-6, 1)
+scale = Vector2(1.0539683, 1.195)
+texture = ExtResource("2_v64tr")
+centered = false
+
+[node name="BordeArriba" type="StaticBody2D" parent="."]
+position = Vector2(151, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BordeArriba"]
+position = Vector2(9.5, 0)
+shape = SubResource("RectangleShape2D_v64tr")
+
+[node name="BordeAbajo" type="StaticBody2D" parent="."]
+position = Vector2(159, 230)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BordeAbajo"]
+shape = SubResource("RectangleShape2D_v64tr")
+
+[node name="BordeDerecha" type="StaticBody2D" parent="."]
+position = Vector2(312, 124)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BordeDerecha"]
+shape = SubResource("RectangleShape2D_v64tr")
+
+[node name="BordeIzquierda" type="StaticBody2D" parent="."]
+position = Vector2(9, 118)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BordeIzquierda"]
+shape = SubResource("RectangleShape2D_v64tr")

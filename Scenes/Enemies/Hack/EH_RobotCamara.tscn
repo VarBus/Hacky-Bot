@@ -1,36 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpctjn1urrb8v"]
+[gd_scene load_steps=5 format=3 uid="uid://bpctjn1urrb8v"]
 
-[ext_resource type="Texture2D" uid="uid://b1uvruy8rhyt2" path="res://Assets/Sprites/PlaceHolders/camara.png" id="1_hvjc8"]
 [ext_resource type="Script" uid="uid://37qybc2cop23" path="res://Scripts/Enemies/Camara.gd" id="1_m3jt7"]
+[ext_resource type="Texture2D" uid="uid://gjie0t2607m" path="res://Assets/Sprites/enemies/camara.png" id="2_m3jt7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_82b5j"]
-size = Vector2(65, 65)
+[sub_resource type="CircleShape2D" id="CircleShape2D_m3jt7"]
 
-[node name="EhRobotCamara" type="CharacterBody2D"]
-position = Vector2(287, 99)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3jt7"]
+size = Vector2(321, 20)
+
+[node name="EhRobotCamara" type="CharacterBody2D" node_paths=PackedStringArray("visual_node") groups=["hackable"]]
 script = ExtResource("1_m3jt7")
+visual_node = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("1_hvjc8")
+texture_filter = 1
+position = Vector2(7, 0)
+texture = ExtResource("2_m3jt7")
 
-[node name="Vision_Area2D" type="Area2D" parent="."]
+[node name="Vision_Area2D" type="Area2D" parent="." groups=["hackable"]]
+position = Vector2(13, -1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vision_Area2D"]
-position = Vector2(1.3000183, -7.0999985)
-polygon = PackedVector2Array(-19, 18, -67.30002, 148.1, -203.30002, 148.1, -18, -1)
+position = Vector2(128.19003, -5.9699974)
+polygon = PackedVector2Array(-89.19003, 24.969997, 54.809967, 131.97, -72.19003, 131.97, -121.19003, 11.969997, -122.19003, -0.030002594)
 
 [node name="VisionConeVisual" type="Polygon2D" parent="Vision_Area2D"]
-position = Vector2(1.3000183, -7.0999985)
+position = Vector2(128.19003, -5.9699974)
 color = Color(0.9647059, 0, 0.09019608, 0.19607843)
-polygon = PackedVector2Array(-19, 18, -67.30002, 148.1, -202.30002, 148.1, -18, -1)
+polygon = PackedVector2Array(54.809967, 131.97, -72.19003, 131.97, -121.19003, 11.969997, -122.19003, -0.030002594)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(-15, -4)
-target_position = Vector2(-114, 143)
+position = Vector2(19, -1)
+target_position = Vector2(113, 126)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_82b5j")
+position = Vector2(6, -1)
+shape = SubResource("CircleShape2D_m3jt7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_m3jt7")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_m3jt7")
 
 [connection signal="body_entered" from="Vision_Area2D" to="." method="_on_vision_area_2d_body_entered"]

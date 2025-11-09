@@ -1,20 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5wnr4u6rh07c"]
+[gd_scene load_steps=5 format=3 uid="uid://c5wnr4u6rh07c"]
 
-[ext_resource type="Script" uid="uid://5m01003evgrk" path="res://Scripts/Objetos/Door.gd" id="1_4kxwy"]
-[ext_resource type="Texture2D" uid="uid://cuj6ndfksefch" path="res://Assets/Sprites/PlaceHolders/Door_cerrada.png" id="2_owtp4"]
+[ext_resource type="Script" uid="uid://5m01003evgrk" path="res://Scripts/Objetos/DoorExit.gd" id="1_4kxwy"]
+[ext_resource type="Texture2D" uid="uid://c80s47cd26r52" path="res://Assets/Sprites/objetos/puerta 2.png" id="2_owtp4"]
+[ext_resource type="Texture2D" uid="uid://baro15rcye5nc" path="res://Assets/Sprites/objetos/puerta 1.png" id="3_32g4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owtp4"]
-size = Vector2(20.666668, 20)
+size = Vector2(2.0666666, 2.3333335)
 
-[node name="Puerta" type="Node2D"]
+[node name="Puerta_llegada" type="Area2D"]
 script = ExtResource("1_4kxwy")
+textura_normal = ExtResource("3_32g4g")
+textura_bloqueada = ExtResource("2_owtp4")
+textura_abierta = ExtResource("3_32g4g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_owtp4")
 
-[node name="StaticBody2D" type="Area2D" parent="."]
-position = Vector2(2, 2)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1
+position = Vector2(0.49999988, -8.500003)
 scale = Vector2(15, 15)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_owtp4")
