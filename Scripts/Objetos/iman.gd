@@ -1,116 +1,72 @@
 extends HackableEntity
 
-var active: bool = false
+# Nueva señal: habilita el auto de las plataformas
+signal platform_auto(active: bool, source: Node)
+
 @export var target_group: StringName = &"platform"
 
-@export var hover_height: float = 120.0
-@export var ascend_speed: float = 320.0
-@export var hover_gain: float = 16.0
-@export var hover_damp: float = 8.0
-@export var auto_deactivate_seconds: float = 1.2
-
-var _inside: Array[CharacterBody2D] = []
-
+var _inside_platforms: Array[Node] = []
 @onready var gravity_area_player: Area2D = get_node_or_null("GravityAreaPlayer")
-@onready var gravity_timer: Timer = get_node_or_null("GravityTimer")
+
+var _last_gate := -1  # -1 = sin iniciar, 0 = off, 1 = on
 
 func _ready() -> void:
-	# Conecta señales por código para evitar nulls si se desenlaza en el editor.
 	if gravity_area_player:
 		gravity_area_player.body_entered.connect(_on_gravity_area_player_body_entered)
 		gravity_area_player.body_exited.connect(_on_gravity_area_player_body_exited)
-	if gravity_timer:
-		gravity_timer.one_shot = true
-		gravity_timer.timeout.connect(_on_gravity_timer_timeout)
-
-# === Control mientras está hackeado ===
-func _handle_hacked_input(delta: float) -> void:
-	if Input.is_action_just_pressed("shoot"):
-		activate()
 
 func _physics_process(delta: float) -> void:
-	if not active:
-		return
+	# Gate = solo ON mientras está hackeado
+	var gate := (1 if is_hacked else 0)
 
-	# Iteramos al revés porque podemos borrar elementos
-	for i in range(_inside.size() - 1, -1, -1):
-		var t := _inside[i]
-		if not is_instance_valid(t):
-			_inside.remove_at(i)
-			continue
+	# Evita spam de señales
+	if gate != _last_gate:
+		_last_gate = gate
+		var active := gate == 1
+		print("[Iman] platform_auto=", active)
+		if _inside_platforms.size() > 0:
+			emit_signal("platform_auto", active, self)
 
-		# Preparar el “despegue” si estaba en el piso
-		if t.is_on_floor():
-			if not t.has_meta("prev_snap"):
-				t.set_meta("prev_snap", t.floor_snap_length)
-			t.floor_snap_length = 0.0
+# (Opcional) si quieres controlar algo mientras está hackeado, hazlo aquí
+func _handle_hacked_input(delta: float) -> void:
+	# p.ej. con "shoot" podrías cambiar color o algo visual, pero el gate ya depende de is_hacked
+	pass
 
-			# Pequeño nudge para separarlo del suelo y dar impulso inicial
-			t.global_position.y -= 1.0
-			t.velocity.y = -ascend_speed
+# Al soltar el control, forzamos gate OFF por si acaso
+func release_control() -> void:
+	super.release_control()
+	_last_gate = 0
+	emit_signal("platform_auto", false, self)
 
-		# Anular la gravedad propia mientras está agarrado por el imán
-		t.velocity -= t.get_gravity() * delta
-
-		# Altura objetivo: hover_height por debajo del imán
-		var target_y := global_position.y - hover_height
-		var error := target_y - t.global_position.y
-
-		# Velocidad vertical deseada (control proporcional con saturación)
-		var v_des = clamp(error * hover_gain, -ascend_speed, ascend_speed)
-
-		# Amortiguación hacia la velocidad deseada
-		t.velocity.y = lerp(t.velocity.y, v_des, clamp(hover_damp * delta, 0.0, 1.0))
-
-func activate() -> void:
-	if active:
-		return
-	active = true
-
-	if visual_node:
-		visual_node.modulate = Color(1, 0.4, 0.4) # feedback “activo”
-
-	if gravity_timer:
-		gravity_timer.stop()
-		gravity_timer.wait_time = auto_deactivate_seconds
-		gravity_timer.start()
-
-func deactivate() -> void:
-	if not active:
-		return
-	active = false
-
-	# Restaurar color según si sigue hackeado o no
-	if visual_node:
-		if is_hacked:
-			select()
-		else:
-			deselect()
-
-	# Restablecer floor_snap_length a todos los cuerpos que aún tengamos
-	for i in range(_inside.size() - 1, -1, -1):
-		var t := _inside[i]
-		if is_instance_valid(t):
-			_restore_snap(t)
-
+# --- Detección / conexión con plataformas ---
 func _on_gravity_area_player_body_entered(body: Node2D) -> void:
-	if body is CharacterBody2D and body.is_in_group(target_group):
-		var t := body as CharacterBody2D
-		if not _inside.has(t):
-			_inside.append(t)
+	if body.is_in_group(target_group):
+		if not _inside_platforms.has(body):
+			_inside_platforms.append(body)
+
+		if body.has_method("_on_magnet_platform_auto"):
+			var cb := Callable(body, "_on_magnet_platform_auto")
+			if not is_connected("platform_auto", cb):
+				var err := connect("platform_auto", cb)
+				if err != OK:
+					push_warning("No se pudo conectar con " + body.name + " err=" + str(err))
+			print("[Iman] Conectado a plataforma:", body.name)
+		else:
+			push_warning(body.name + " no implementa _on_magnet_platform_auto")
+
+		# Al entrar, envía el estado actual del gate (según is_hacked)
+		emit_signal("platform_auto", is_hacked, self)
 
 func _on_gravity_area_player_body_exited(body: Node2D) -> void:
-	if body is CharacterBody2D:
-		var t := body as CharacterBody2D
-		_inside.erase(t)
-		_restore_snap(t)
+	if body.is_in_group(target_group):
+		if _inside_platforms.has(body):
+			_inside_platforms.erase(body)
 
-func _on_gravity_timer_timeout() -> void:
-	deactivate()
+		var cb := Callable(body, "_on_magnet_platform_auto")
+		if is_connected("platform_auto", cb):
+			disconnect("platform_auto", cb)
+		print("[Iman] Desconectado de plataforma:", body.name)
 
-func _restore_snap(t: CharacterBody2D) -> void:
-	if not is_instance_valid(t):
-		return
-	if t.has_meta("prev_snap"):
-		t.floor_snap_length = t.get_meta("prev_snap")
-		t.remove_meta("prev_snap")
+		# De cortesía, dejarla en OFF al salir
+		if body.has_method("_on_magnet_platform_auto"):
+			body.call("_on_magnet_platform_auto", false, self)
