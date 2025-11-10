@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cemnb8mpnb7g7"]
+[gd_scene load_steps=6 format=3 uid="uid://cemnb8mpnb7g7"]
 
-[ext_resource type="PackedScene" uid="uid://dfkqgh10ip0tm" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_cavhk"]
+[ext_resource type="PackedScene" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_cavhk"]
 [ext_resource type="PackedScene" uid="uid://dilb15hs6mn7w" path="res://Characters/hacky.tscn" id="2_70iug"]
-[ext_resource type="PackedScene" uid="uid://bpctjn1urrb8v" path="res://Scenes/Enemies/Hack/EH_RobotCamara.tscn" id="3_70iug"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemies/Hack/EH_RobotCamara.tscn" id="3_70iug"]
 [ext_resource type="PackedScene" uid="uid://c5wnr4u6rh07c" path="res://Scenes/Objetos/Puerta.tscn" id="4_bf6fx"]
+[ext_resource type="PackedScene" uid="uid://be30thu58fyd4" path="res://Scenes/UI/time.tscn" id="5_gpbld"]
 
 [node name="Nivel2" type="Node2D"]
 
@@ -18,3 +19,9 @@ position = Vector2(2, 92)
 [node name="Puerta_llegada2" parent="." instance=ExtResource("4_bf6fx")]
 position = Vector2(283, 204)
 proximo_nivel_path = "res://Scenes/Niveles/Niveles GameJam/Nivel3.tscn"
+
+[node name="Time" parent="." instance=ExtResource("5_gpbld")]
+offset_left = 281.0
+offset_top = 41.0
+offset_right = 281.0
+offset_bottom = 41.0

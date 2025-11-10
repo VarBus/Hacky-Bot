@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b41fsg2jwegq"]
+[gd_scene load_steps=6 format=3 uid="uid://b41fsg2jwegq"]
 
-[ext_resource type="PackedScene" uid="uid://dfkqgh10ip0tm" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_6prd2"]
+[ext_resource type="PackedScene" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_6prd2"]
 [ext_resource type="PackedScene" uid="uid://c5wnr4u6rh07c" path="res://Scenes/Objetos/Puerta.tscn" id="2_m47sd"]
 [ext_resource type="PackedScene" uid="uid://dilb15hs6mn7w" path="res://Characters/hacky.tscn" id="4_edt1o"]
-[ext_resource type="PackedScene" uid="uid://cfsyom2aujj5k" path="res://Scenes/Enemies/Hack/PatrolEnemy.tscn" id="4_g5jpc"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemies/Hack/PatrolEnemy.tscn" id="4_g5jpc"]
+[ext_resource type="PackedScene" uid="uid://be30thu58fyd4" path="res://Scenes/UI/time.tscn" id="5_edt1o"]
 
 [node name="Nivel1" type="Node2D"]
 
@@ -19,3 +20,11 @@ proximo_nivel_path = "res://Scenes/Niveles/Niveles GameJam/Nivel2.tscn"
 
 [node name="PatrolEnemy" parent="." instance=ExtResource("4_g5jpc")]
 position = Vector2(171, 224)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Time" parent="UI" instance=ExtResource("5_edt1o")]
+offset_left = 246.0
+offset_top = 30.0
+offset_right = -18.0
+offset_bottom = -182.0

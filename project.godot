@@ -13,11 +13,13 @@ config_version=5
 config/name="HackyBot"
 run/main_scene="uid://bk2tgufds8lf3"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="uid://df6h7a8pgxpwr"
+config/icon="uid://df6h7a8pgxpwr"
 
 [autoload]
 
 PauseManager="*res://Autoload/PauseManager.gd"
+MusicManager="*res://Autoload/music_manager.gd"
 
 [display]
 
