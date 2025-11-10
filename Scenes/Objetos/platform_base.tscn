@@ -11,6 +11,8 @@ size = Vector2(82, 22)
 
 [node name="PlatformBase" type="CharacterBody2D" groups=["platform"]]
 script = ExtResource("1_ofjo6")
+vertical_speed = 1800.0
+push_only_when_going_up = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, 0.25000572)

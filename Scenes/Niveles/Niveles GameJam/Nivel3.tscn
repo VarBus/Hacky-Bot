@@ -54,7 +54,11 @@ offset_right = 281.0
 offset_bottom = 41.0
 
 [node name="Iman" parent="." instance=ExtResource("6_w4oud")]
-position = Vector2(150, 44)
+position = Vector2(150, 42)
 
 [node name="PlatformBase" parent="." instance=ExtResource("7_3boac")]
 position = Vector2(149, 207)
+vertical_speed = 200.0
+vertical_drag = 1000.0
+push_only_when_going_up = true
+auto_top_offset = -120.0
