@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://gwqyepw2p5ii"]
+
+[ext_resource type="AudioStream" uid="uid://bpfphae2xojbj" path="res://Assets/Sounds/starstream-circuit-370586.ogg" id="1_fbmny"]
+
+[node name="Music" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_fbmny")
+volume_db = -15.0
+autoplay = true
