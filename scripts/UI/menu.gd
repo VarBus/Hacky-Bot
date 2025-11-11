@@ -16,7 +16,7 @@ func _on_play_button_pressed() -> void:
 		$Press.stop()
 		$Press.play()
 	await get_tree().create_timer(wait_seconds).timeout
-	get_tree().change_scene_to_file("res://scenes/UI/level_selector.tscn")
+	get_tree().change_scene_to_file("res://Scenes/UI/level_selector.tscn")
 	_busy = false
 
 func _on_exit_button_pressed() -> void:
