@@ -63,5 +63,5 @@ func retry_scene():
 
 func can_pause_in_current_scene() -> bool:
 	var scene_name = get_tree().current_scene.name
-	var non_pausable_scenes =  ["Menu",]
+	var non_pausable_scenes =  ["Menu", "LevelSelector", "levels_selector", "WinScreen", "LostScreen"]
 	return not scene_name in non_pausable_scenes

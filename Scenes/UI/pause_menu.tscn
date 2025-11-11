@@ -77,4 +77,6 @@ text = "Exit
 [node name="EffectSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_r2i2h")
 
+[connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

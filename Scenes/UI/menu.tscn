@@ -87,20 +87,20 @@ texture_hover = ExtResource("6_ttkkf")
 [node name="OptionsButton" type="TextureButton" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 58.0
-offset_top = 122.0
-offset_right = 167.0
-offset_bottom = 232.0
+offset_left = 28.000002
+offset_top = 171.0
+offset_right = 137.0
+offset_bottom = 281.0
 scale = Vector2(0.4, 0.4)
 texture_normal = ExtResource("9_c0ox7")
 texture_hover = ExtResource("10_ukh7q")
 
 [node name="ExitButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 218.0
-offset_top = 122.0
-offset_right = 327.0
-offset_bottom = 232.0
+offset_left = 253.0
+offset_top = 171.00002
+offset_right = 362.0
+offset_bottom = 281.0
 scale = Vector2(0.4, 0.4)
 texture_normal = ExtResource("11_ybvh4")
 texture_hover = ExtResource("12_ytjtw")

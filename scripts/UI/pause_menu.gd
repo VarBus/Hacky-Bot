@@ -44,4 +44,4 @@ func _on_continue_button_pressed():
 
 func _on_exit_button_pressed():
 	PauseManager.resume_game()
-	get_tree().change_scene_to_file("res://scenes/UI/menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/UI/menu.tscn")

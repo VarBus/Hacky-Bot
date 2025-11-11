@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dfkqgh10ip0tm"]
 
 [ext_resource type="Texture2D" uid="uid://dqc3fvyttljev" path="res://Assets/backgrounds/fondo final.jpg" id="1_v64tr"]
-[ext_resource type="Texture2D" uid="uid://cj5wo65tixb2v" path="res://Assets/backgrounds/MINIATURA borde.png" id="2_v64tr"]
+[ext_resource type="Texture2D" uid="uid://kahcgrdj4pp3" path="res://Assets/Sprites/menu/main_menu/border_menu.png" id="2_v64tr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v64tr"]
 size = Vector2(321, 20)
@@ -20,12 +20,11 @@ texture = ExtResource("1_v64tr")
 [node name="Marco" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-6, 1)
-scale = Vector2(1.0539683, 1.195)
 texture = ExtResource("2_v64tr")
 centered = false
 
 [node name="BordeArriba" type="StaticBody2D" parent="."]
-position = Vector2(151, 15)
+position = Vector2(151, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BordeArriba"]
 position = Vector2(9.5, 0)
@@ -35,6 +34,7 @@ shape = SubResource("RectangleShape2D_v64tr")
 position = Vector2(159, 232)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BordeAbajo"]
+position = Vector2(2, 4)
 shape = SubResource("WorldBoundaryShape2D_v64tr")
 
 [node name="BordeDerecha" type="StaticBody2D" parent="."]
