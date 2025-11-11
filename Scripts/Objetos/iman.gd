@@ -11,9 +11,10 @@ var _inside_platforms: Array[Node] = []
 var _last_gate := -1  # -1 = sin iniciar, 0 = off, 1 = on
 
 func _ready() -> void:
-	if gravity_area_player:
-		gravity_area_player.body_entered.connect(_on_gravity_area_player_body_entered)
-		gravity_area_player.body_exited.connect(_on_gravity_area_player_body_exited)
+	pass
+	#if gravity_area_player:
+		#gravity_area_player.body_entered.connect(_on_gravity_area_player_body_entered)
+		#gravity_area_player.body_exited.connect(_on_gravity_area_player_body_exited)
 
 func _physics_process(delta: float) -> void:
 	# Gate = solo ON mientras está hackeado

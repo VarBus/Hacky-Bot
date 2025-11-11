@@ -20,6 +20,7 @@ var was_in_air: bool = false
 @onready var SfxJump: AudioStreamPlayer2D = $SfxJump
 @onready var SfxHack: AudioStreamPlayer2D = $SfxHack
 @onready var SfxIdle: AudioStreamPlayer2D = $SfxIdle
+@onready var SfxDeath: AudioStreamPlayer2D = $SfxDeath
 
 @export_group("Sound Pitches")
 @export var pitch_variations_walk: Array[float] = [0.95, 1.0, 1.05]
@@ -36,6 +37,8 @@ var was_in_air: bool = false
 # --- Control de SFX ---
 var _jump_sfx_next_time: float = 0.0       # antirebote de salto (s)
 const JUMP_SFX_COOLDOWN := 0.10            # 100 ms
+
+var is_dead := false
 
 func _ready() -> void:
 	randomize()
@@ -305,3 +308,21 @@ func _stop_loop(audio_player: AudioStreamPlayer2D) -> void:
 func _on_sfx_hack_finished() -> void:
 	if is_hacking and SfxHack != null and not SfxHack.playing:
 		SfxHack.play()
+
+func die():
+	if is_dead:
+		return
+	
+	is_dead = true
+	set_physics_process(false)
+	$CollisionShape2D.set_deferred("disabled", true)
+	if anim_sprite:
+		anim_sprite.hide()
+	if $ExplosionParticles: # El nodo que acabamos de crear
+		$ExplosionParticles.emitting = true
+	
+	# Detener todos los sonidos de loop
+	_stop_loop(SfxWalk)
+	_stop_loop(SfxIdle)
+	_stop_loop(SfxHack)
+	play_loop_sfx_random(SfxDeath, pitch_variations_idle)

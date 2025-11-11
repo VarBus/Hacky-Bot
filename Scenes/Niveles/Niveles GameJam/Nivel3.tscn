@@ -1,18 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://bu6xewy3rk6o"]
+[gd_scene load_steps=12 format=3 uid="uid://bu6xewy3rk6o"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_etjn4"]
+[ext_resource type="PackedScene" uid="uid://dfkqgh10ip0tm" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_etjn4"]
 [ext_resource type="PackedScene" uid="uid://c5wnr4u6rh07c" path="res://Scenes/Objetos/Puerta.tscn" id="2_p4tdh"]
 [ext_resource type="Texture2D" uid="uid://bkrxhsfi5igll" path="res://Assets/Sprites/objetos/RECTANGULO LARGO.png" id="3_uqt5v"]
 [ext_resource type="PackedScene" uid="uid://dilb15hs6mn7w" path="res://Characters/hacky.tscn" id="4_v0amk"]
 [ext_resource type="PackedScene" uid="uid://be30thu58fyd4" path="res://Scenes/UI/time.tscn" id="6_v0amk"]
 [ext_resource type="PackedScene" uid="uid://b0atlo13hupou" path="res://Scenes/Items/Iman/iman.tscn" id="6_w4oud"]
 [ext_resource type="PackedScene" uid="uid://ugrolq2v6yxx" path="res://Scenes/Objetos/platform_base.tscn" id="7_3boac"]
+[ext_resource type="PackedScene" uid="uid://cjhukt4ee1t3f" path="res://Scenes/Niveles/killzone.tscn" id="8_3boac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0amk"]
 size = Vector2(130.13696, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w4oud"]
 size = Vector2(126.71234, 30)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1iydj"]
 
 [node name="Nivel3" type="Node2D"]
 
@@ -58,7 +61,13 @@ position = Vector2(150, 42)
 
 [node name="PlatformBase" parent="." instance=ExtResource("7_3boac")]
 position = Vector2(149, 207)
-vertical_speed = 200.0
-vertical_drag = 1000.0
-push_only_when_going_up = true
-auto_top_offset = -120.0
+
+[node name="Killzone" parent="." node_paths=PackedStringArray("camera_to_shake") instance=ExtResource("8_3boac")]
+position = Vector2(149, 216)
+camera_to_shake = NodePath("../Camera2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("WorldBoundaryShape2D_1iydj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 120)
