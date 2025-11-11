@@ -16,11 +16,11 @@ var is_landing: bool = false
 var was_in_air: bool = false
 
 # --- Sonidos (nodos en la escena) ---
-@onready var SfxWalk: AudioStreamPlayer2D = $SfxWalk
-@onready var SfxJump: AudioStreamPlayer2D = $SfxJump
-@onready var SfxHack: AudioStreamPlayer2D = $SfxHack
+@onready var SfxWalk: AudioStreamPlayer2D = $Sfx2/SfxWalk
+@onready var SfxJump: AudioStreamPlayer2D = $Sfx2/SfxJump
+@onready var SfxHack: AudioStreamPlayer2D = $Sfx2/SfxHack
 @onready var SfxIdle: AudioStreamPlayer2D = $SfxIdle
-@onready var SfxDeath: AudioStreamPlayer2D = $SfxDeath
+@onready var SfxDeath: AudioStreamPlayer2D = $Sfx2/SfxDeath
 
 @export_group("Sound Pitches")
 @export var pitch_variations_walk: Array[float] = [0.95, 1.0, 1.05]
@@ -30,8 +30,8 @@ var was_in_air: bool = false
 
 # --- Wall Jump ---
 @export_group("Wall Jump")
-@export var wall_jump_speed: float = 400.0
-@export var wall_push_speed: float = 400.0
+@export var wall_jump_speed: float = 300.0
+@export var wall_push_speed: float = 100.0
 @export var wall_slide_gravity: float = 200.0
 
 # --- Control de SFX ---
@@ -315,6 +315,7 @@ func die():
 	
 	is_dead = true
 	set_physics_process(false)
+	#$Sprite2D.play("death")
 	$CollisionShape2D.set_deferred("disabled", true)
 	if anim_sprite:
 		anim_sprite.hide()

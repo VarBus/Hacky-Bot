@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://be30thu58fyd4" path="res://Scenes/UI/time.tscn" id="6_v0amk"]
 [ext_resource type="PackedScene" uid="uid://b0atlo13hupou" path="res://Scenes/Items/Iman/iman.tscn" id="6_w4oud"]
 [ext_resource type="PackedScene" uid="uid://ugrolq2v6yxx" path="res://Scenes/Objetos/platform_base.tscn" id="7_3boac"]
-[ext_resource type="PackedScene" uid="uid://cjhukt4ee1t3f" path="res://Scenes/Niveles/killzone.tscn" id="8_3boac"]
+[ext_resource type="PackedScene" uid="uid://djcdjiybiwrhc" path="res://Scenes/Niveles/killzone.tscn" id="8_3boac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0amk"]
 size = Vector2(130.13696, 25)

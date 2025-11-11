@@ -21,7 +21,7 @@ scale = Vector2(0.08, 0.08)
 texture = ExtResource("2_puk7v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.49974844, 2.749999)
+position = Vector2(0.49974844, 2.7499988)
 shape = SubResource("RectangleShape2D_puk7v")
 
 [node name="GravityAreaPlayer" type="Area2D" parent="." groups=["Iman"]]
