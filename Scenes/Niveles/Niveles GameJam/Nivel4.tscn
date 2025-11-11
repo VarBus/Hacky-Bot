@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://bc4idosleg6f2"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_5ikkj"]
+[ext_resource type="PackedScene" uid="uid://dfkqgh10ip0tm" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_5ikkj"]
 [ext_resource type="Texture2D" uid="uid://bkrxhsfi5igll" path="res://Assets/Sprites/objetos/RECTANGULO LARGO.png" id="2_wdijf"]
 [ext_resource type="PackedScene" uid="uid://dilb15hs6mn7w" path="res://Characters/hacky.tscn" id="3_08vis"]
 [ext_resource type="PackedScene" uid="uid://c5wnr4u6rh07c" path="res://Scenes/Objetos/Puerta.tscn" id="4_vll2c"]
 [ext_resource type="Texture2D" uid="uid://dkm5bu0103yig" path="res://Assets/Sprites/objetos/plataforma final.png" id="5_rx3vp"]
-[ext_resource type="PackedScene" path="res://Scenes/Enemies/Hack/PatrolEnemy.tscn" id="6_6dg4q"]
+[ext_resource type="PackedScene" uid="uid://cfsyom2aujj5k" path="res://Scenes/Enemies/Hack/PatrolEnemy.tscn" id="6_6dg4q"]
 [ext_resource type="PackedScene" uid="uid://be30thu58fyd4" path="res://Scenes/UI/time.tscn" id="7_rx3vp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vll2c"]
@@ -17,6 +17,11 @@ size = Vector2(99.04761, 15.714279)
 [node name="Nivel4" type="Node2D"]
 
 [node name="EstructuraNivel" parent="." instance=ExtResource("1_5ikkj")]
+
+[node name="Puerta_llegada2" parent="." instance=ExtResource("4_vll2c")]
+position = Vector2(280, 129)
+esta_bloqueada = true
+proximo_nivel_path = "res://Scenes/UI/win_screen.tscn"
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(84, 154)
@@ -32,11 +37,6 @@ shape = SubResource("RectangleShape2D_vll2c")
 
 [node name="Hacky" parent="." instance=ExtResource("3_08vis")]
 position = Vector2(35, 211)
-
-[node name="Puerta_llegada2" parent="." instance=ExtResource("4_vll2c")]
-position = Vector2(280, 129)
-esta_bloqueada = true
-proximo_nivel_path = "res://Scenes/UI/win_screen.tscn"
 
 [node name="PlataformaHack" type="Sprite2D" parent="."]
 position = Vector2(197, 139.99998)

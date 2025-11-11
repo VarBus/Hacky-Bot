@@ -160,11 +160,12 @@ func update_hacking_line(target_entity: Node2D) -> void:
 		hacking_line.hide()
 		return
 
-	var player_global_pos := global_position
+	#var player_global_pos := global_position
+	
 	var entity_global_pos := target_entity.global_position
 
-	hacking_line.set_point_position(0, to_local(player_global_pos))
-	hacking_line.set_point_position(1, to_local(entity_global_pos))
+	hacking_line.set_point_position(0, Vector2.ZERO)
+	hacking_line.set_point_position(1, hacking_line.to_local(entity_global_pos))
 
 	if not hacking_line.is_visible():
 		hacking_line.show()

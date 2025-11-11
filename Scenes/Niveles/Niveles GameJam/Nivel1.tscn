@@ -10,13 +10,13 @@
 
 [node name="EstructuraNivel" parent="." instance=ExtResource("1_6prd2")]
 
-[node name="Hacky" parent="." instance=ExtResource("4_edt1o")]
-position = Vector2(52, 197)
-
 [node name="Puerta_llegada" parent="." instance=ExtResource("2_m47sd")]
 position = Vector2(279, 210)
 esta_bloqueada = true
 proximo_nivel_path = "res://Scenes/Niveles/Niveles GameJam/Nivel2.tscn"
+
+[node name="Hacky" parent="." instance=ExtResource("4_edt1o")]
+position = Vector2(52, 197)
 
 [node name="PatrolEnemy" parent="." instance=ExtResource("4_g5jpc")]
 position = Vector2(170, 215)

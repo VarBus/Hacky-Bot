@@ -21,6 +21,10 @@ size = Vector2(126.71234, 30)
 
 [node name="EstructuraNivel" parent="." instance=ExtResource("1_etjn4")]
 
+[node name="Puerta_llegada2" parent="." instance=ExtResource("2_p4tdh")]
+position = Vector2(276, 109)
+proximo_nivel_path = "res://Scenes/Niveles/Niveles GameJam/Nivel4.tscn"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(46, 73)
 scale = Vector2(0.292, 0.2)
@@ -34,10 +38,6 @@ shape = SubResource("RectangleShape2D_v0amk")
 
 [node name="Hacky" parent="." instance=ExtResource("4_v0amk")]
 position = Vector2(47, 67)
-
-[node name="Puerta_llegada2" parent="." instance=ExtResource("2_p4tdh")]
-position = Vector2(276, 109)
-proximo_nivel_path = "res://Scenes/Niveles/Niveles GameJam/Nivel4.tscn"
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(276, 123)
