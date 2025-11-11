@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dryw77r4u1ew7" path="res://Assets/Sprites/enemies/iman robotico 2.png" id="2_puk7v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puk7v"]
-size = Vector2(36, 34.49975)
+size = Vector2(25, 31.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_twndu"]
 height = 224.0
@@ -21,7 +21,7 @@ scale = Vector2(0.08, 0.08)
 texture = ExtResource("2_puk7v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.9967214, 1.2501255)
+position = Vector2(0.49974844, 2.749999)
 shape = SubResource("RectangleShape2D_puk7v")
 
 [node name="GravityAreaPlayer" type="Area2D" parent="." groups=["Iman"]]

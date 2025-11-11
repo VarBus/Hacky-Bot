@@ -10,7 +10,8 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
-		toggle_pause()
+		if can_pause_in_current_scene():
+			toggle_pause()
 
 func toggle_pause():
 	if get_tree().paused:
@@ -59,3 +60,8 @@ func retry_scene():
 	if current_scene:
 		var scene_path = current_scene.scene_file_path
 		get_tree().change_scene_to_file(scene_path)
+
+func can_pause_in_current_scene() -> bool:
+	var scene_name = get_tree().current_scene.name
+	var non_pausable_scenes =  ["Menu",]
+	return not scene_name in non_pausable_scenes

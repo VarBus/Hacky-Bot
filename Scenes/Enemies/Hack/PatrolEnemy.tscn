@@ -73,7 +73,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gju12"]
-size = Vector2(15, 21)
+size = Vector2(10.5, 14.5)
 
 [node name="PatrolEnemy" type="CharacterBody2D" node_paths=PackedStringArray("visual_node") groups=["hackable"]]
 scale = Vector2(2, 2)
@@ -81,12 +81,12 @@ script = ExtResource("1_gju12")
 visual_node = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(0, -11)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_jprl8")
 autoplay = "default"
 frame_progress = 0.4561672
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -10.5)
+position = Vector2(0.25, -7.25)
 shape = SubResource("RectangleShape2D_gju12")

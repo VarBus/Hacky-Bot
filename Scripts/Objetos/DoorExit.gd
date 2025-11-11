@@ -30,7 +30,7 @@ func _on_body_entered(body):
 		# Si el jugador toca la puerta...
 		if is_open:
 			# ¡Y la puerta está abierta (sea normal o hackeada)!
-			_ir_al_siguiente_nivel()
+			call_deferred("_ir_al_siguiente_nivel")
 		else:
 			# El jugador tocó una puerta bloqueada
 			print("PUERTA BLOQUEADA. Necesitas un hacker.")
@@ -48,8 +48,6 @@ func _abrir_puerta_hackeada():
 	is_open = true
 	esta_bloqueada = false 
 	$Sprite2D.texture = textura_abierta
-	
-
 
 func _ir_al_siguiente_nivel():
 	if proximo_nivel_path.is_empty():

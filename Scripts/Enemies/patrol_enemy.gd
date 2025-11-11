@@ -3,7 +3,7 @@ extends HackableEntity
 
 const Movement2DScript = preload("res://Scripts/Clases/MovementCharacters.gd")
 var mover := Movement2DScript.new()
-var direction: int = -1
+var direction: int = 0
 
 func _physics_process(delta: float) -> void:
 	# Si estamos hackeados, la lógica de control la maneja el jugador
@@ -12,9 +12,9 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# --- IA de movimiento autónomo (cuando no está hackeado) ---
-	#mover.begin_frame(is_on_floor(), delta)
-	#velocity = mover.step(velocity, direction, is_on_floor(), delta)
-	#move_and_slide()
+	mover.begin_frame(is_on_floor(), delta)
+	velocity = mover.step(velocity, direction, is_on_floor(), delta)
+	move_and_slide()
 
 	if is_on_wall():
 		direction *= -1
