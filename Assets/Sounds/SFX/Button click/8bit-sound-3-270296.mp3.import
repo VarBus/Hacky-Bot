@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://g6fkeqy0y0uo"
+path="res://.godot/imported/8bit-sound-3-270296.mp3-3be8b0f7293cb180f0438a4c03c5fe5a.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/SFX/Button click/8bit-sound-3-270296.mp3"
+dest_files=["res://.godot/imported/8bit-sound-3-270296.mp3-3be8b0f7293cb180f0438a4c03c5fe5a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

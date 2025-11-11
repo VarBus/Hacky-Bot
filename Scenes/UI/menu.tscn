@@ -1,9 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://bk2tgufds8lf3"]
+[gd_scene load_steps=13 format=3 uid="uid://bk2tgufds8lf3"]
 
 [ext_resource type="Script" uid="uid://w6vydtmp3byt" path="res://Scripts/UI/menu.gd" id="1_uk6bn"]
 [ext_resource type="Texture2D" uid="uid://ddatw0f0v5dqi" path="res://Assets/Sprites/menu/main_menu/background.jpg" id="2_fied4"]
 [ext_resource type="Texture2D" uid="uid://kahcgrdj4pp3" path="res://Assets/Sprites/menu/main_menu/border_menu.png" id="2_ugp1d"]
-[ext_resource type="FontFile" uid="uid://c8yuhivf2dij5" path="res://Assets/Fonts/Minecraft.ttf" id="2_wuk0b"]
 [ext_resource type="Texture2D" uid="uid://coqkxde81vk1j" path="res://Assets/Sprites/menu/main_menu/title_menu.png" id="3_rb4ur"]
 [ext_resource type="Texture2D" uid="uid://b4i7s1ub1t3xt" path="res://Assets/Sprites/menu/main_menu/play_button.png" id="5_4twqa"]
 [ext_resource type="Texture2D" uid="uid://k0lmaofulbn6" path="res://Assets/Sprites/menu/main_menu/mini_hacky.png" id="5_s5hva"]
@@ -11,35 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://4kndievwg83q" path="res://Assets/Sprites/menu/main_menu/config_button.png" id="9_c0ox7"]
 [ext_resource type="Texture2D" uid="uid://clgpprfrn2vje" path="res://Assets/Sprites/menu/main_menu/config_button_selected.png" id="10_ukh7q"]
 [ext_resource type="Texture2D" uid="uid://c61fi1sq4qxex" path="res://Assets/Sprites/menu/main_menu/exit_button.png" id="11_ybvh4"]
+[ext_resource type="AudioStream" uid="uid://g6fkeqy0y0uo" path="res://Assets/Sounds/SFX/Button click/8bit-sound-3-270296.mp3" id="12_fied4"]
 [ext_resource type="Texture2D" uid="uid://didvjh2lrn723" path="res://Assets/Sprites/menu/main_menu/exit_button_selected.png" id="12_ytjtw"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dxfgg"]
-texture = ExtResource("5_4twqa")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q0i46"]
-texture = ExtResource("6_ttkkf")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fied4"]
-texture = ExtResource("5_4twqa")
-modulate_color = Color(0.49403244, 0.689491, 0.9519636, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ko46"]
-texture = ExtResource("9_c0ox7")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2bc6q"]
-texture = ExtResource("10_ukh7q")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qx1cs"]
-texture = ExtResource("9_c0ox7")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wwy2u"]
-texture = ExtResource("11_ybvh4")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pu2cx"]
-texture = ExtResource("12_ytjtw")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n7gta"]
-texture = ExtResource("11_ybvh4")
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -101,50 +73,41 @@ texture = ExtResource("5_s5hva")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="PlayButton" type="Button" parent="."]
+[node name="PlayButton" type="TextureButton" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 115.0
-offset_top = 119.0
-offset_right = 204.0
-offset_bottom = 169.0
-theme_override_fonts/font = ExtResource("2_wuk0b")
-theme_override_icons/icon = ExtResource("5_4twqa")
-theme_override_styles/normal = SubResource("StyleBoxTexture_dxfgg")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_q0i46")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fied4")
-flat = true
-icon_alignment = 1
-expand_icon = true
+offset_left = 135.0
+offset_top = 120.0
+offset_right = 319.0
+offset_bottom = 305.0
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("5_4twqa")
+texture_hover = ExtResource("6_ttkkf")
 
-[node name="OptionsButton" type="Button" parent="."]
-custom_minimum_size = Vector2(80, 30)
+[node name="OptionsButton" type="TextureButton" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 263.0
-offset_top = 184.0
-offset_right = 345.0
-offset_bottom = 215.0
-theme_override_fonts/font = ExtResource("2_wuk0b")
-theme_override_icons/icon = ExtResource("9_c0ox7")
-theme_override_styles/normal = SubResource("StyleBoxTexture_6ko46")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_2bc6q")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qx1cs")
-flat = true
-expand_icon = true
+offset_left = 58.0
+offset_top = 122.0
+offset_right = 167.0
+offset_bottom = 232.0
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("9_c0ox7")
+texture_hover = ExtResource("10_ukh7q")
 
-[node name="ExitButton" type="Button" parent="."]
-custom_minimum_size = Vector2(60, 30)
+[node name="ExitButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 29.0
-offset_top = 186.0
-offset_right = 89.0
-offset_bottom = 216.0
-theme_override_fonts/font = ExtResource("2_wuk0b")
-theme_override_icons/icon = ExtResource("11_ybvh4")
-theme_override_styles/normal = SubResource("StyleBoxTexture_wwy2u")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_pu2cx")
-theme_override_styles/hover = SubResource("StyleBoxTexture_n7gta")
-flat = true
-expand_icon = true
+offset_left = 218.0
+offset_top = 122.0
+offset_right = 327.0
+offset_bottom = 232.0
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("11_ybvh4")
+texture_hover = ExtResource("12_ytjtw")
+
+[node name="Press" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_fied4")
+volume_db = 5.0
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

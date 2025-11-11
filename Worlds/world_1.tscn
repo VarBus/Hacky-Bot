@@ -11,7 +11,7 @@
 size = Vector2(749, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j73mq"]
-size = Vector2(20, 409)
+size = Vector2(20, 412.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p3r1e"]
 size = Vector2(212, 17)
@@ -36,7 +36,7 @@ shape = SubResource("RectangleShape2D_j73mq")
 [node name="StaticBody2D3" type="StaticBody2D" parent="." groups=["Muro"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(374, 31)
+position = Vector2(374, 32.75)
 shape = SubResource("RectangleShape2D_j73mq")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
