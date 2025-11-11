@@ -1,22 +1,18 @@
 [gd_scene load_steps=10 format=3 uid="uid://bu6xewy3rk6o"]
 
-[ext_resource type="PackedScene" uid="uid://dfkqgh10ip0tm" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_etjn4"]
+[ext_resource type="PackedScene" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_etjn4"]
 [ext_resource type="PackedScene" uid="uid://c5wnr4u6rh07c" path="res://Scenes/Objetos/Puerta.tscn" id="2_p4tdh"]
 [ext_resource type="Texture2D" uid="uid://bkrxhsfi5igll" path="res://Assets/Sprites/objetos/RECTANGULO LARGO.png" id="3_uqt5v"]
 [ext_resource type="PackedScene" uid="uid://dilb15hs6mn7w" path="res://Characters/hacky.tscn" id="4_v0amk"]
-[ext_resource type="Texture2D" uid="uid://dkm5bu0103yig" path="res://Assets/Sprites/objetos/plataforma final.png" id="5_uqt5v"]
+[ext_resource type="PackedScene" uid="uid://be30thu58fyd4" path="res://Scenes/UI/time.tscn" id="6_v0amk"]
+[ext_resource type="PackedScene" uid="uid://b0atlo13hupou" path="res://Scenes/Items/Iman/iman.tscn" id="6_w4oud"]
+[ext_resource type="PackedScene" uid="uid://ugrolq2v6yxx" path="res://Scenes/Objetos/platform_base.tscn" id="7_3boac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0amk"]
 size = Vector2(130.13696, 25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqt5v"]
-size = Vector2(139, 15)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w4oud"]
 size = Vector2(126.71234, 30)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3boac"]
-size = Vector2(97.85713, 18)
 
 [node name="Nivel3" type="Node2D"]
 
@@ -40,10 +36,6 @@ position = Vector2(47, 67)
 position = Vector2(276, 109)
 proximo_nivel_path = "res://Scenes/Niveles/Niveles GameJam/Nivel4.tscn"
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Puerta_llegada2"]
-position = Vector2(-127.5, 15.5)
-shape = SubResource("RectangleShape2D_uqt5v")
-
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(276, 123)
 scale = Vector2(0.292, 0.2)
@@ -55,13 +47,18 @@ texture = ExtResource("3_uqt5v")
 position = Vector2(-1.7123413, -5)
 shape = SubResource("RectangleShape2D_w4oud")
 
-[node name="PlataformaHack" type="Sprite2D" parent="."]
-position = Vector2(151, 124)
-scale = Vector2(1.4, 1)
-texture = ExtResource("5_uqt5v")
+[node name="Time" parent="." instance=ExtResource("6_v0amk")]
+offset_left = 281.0
+offset_top = 41.0
+offset_right = 281.0
+offset_bottom = 41.0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="PlataformaHack"]
+[node name="Iman" parent="." instance=ExtResource("6_w4oud")]
+position = Vector2(150, 42)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaHack/StaticBody2D"]
-position = Vector2(-1.7857132, 1)
-shape = SubResource("RectangleShape2D_3boac")
+[node name="PlatformBase" parent="." instance=ExtResource("7_3boac")]
+position = Vector2(149, 207)
+vertical_speed = 200.0
+vertical_drag = 1000.0
+push_only_when_going_up = true
+auto_top_offset = -120.0

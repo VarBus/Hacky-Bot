@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ugrolq2v6yxx"]
+
+[ext_resource type="Script" uid="uid://c6ige54ddocgq" path="res://Scripts/Objetos/platform_base.gd" id="1_ofjo6"]
+[ext_resource type="Texture2D" uid="uid://dkm5bu0103yig" path="res://Assets/Sprites/objetos/plataforma final.png" id="2_ofjo6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sa81t"]
+size = Vector2(75, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofjo6"]
+size = Vector2(82, 22)
+
+[node name="PlatformBase" type="CharacterBody2D" groups=["platform"]]
+script = ExtResource("1_ofjo6")
+vertical_speed = 1800.0
+push_only_when_going_up = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 0.25000572)
+scale = Vector2(0.8235294, 1)
+texture = ExtResource("2_ofjo6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_sa81t")
+
+[node name="Top_sensor" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top_sensor"]
+shape = SubResource("RectangleShape2D_ofjo6")
+
+[connection signal="body_entered" from="Top_sensor" to="." method="_on_top_sensor_body_entered"]
+[connection signal="body_exited" from="Top_sensor" to="." method="_on_top_sensor_body_exited"]
