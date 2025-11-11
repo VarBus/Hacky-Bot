@@ -4,6 +4,7 @@ extends HackableEntity
 @onready var raycast: RayCast2D = $RayCast2D
 @onready var vision_visual = $Vision_Area2D/VisionConeVisual
 @onready var scanner: AudioStreamPlayer2D = $Scanner   # tu nodo de sonido
+@onready var timer: Timer = $Cooldown
 
 func _ready():
 	if visual_node == null:
@@ -11,6 +12,7 @@ func _ready():
 
 func take_control(player_node) -> void:
 	super.take_control(player_node)
+	timer.start()
 	disable_camera()
 
 func disable_camera():
@@ -46,3 +48,10 @@ func _on_vision_area_2d_body_exited(body: Node2D) -> void:
 	# al salir el player, corta el sonido
 	if body.is_in_group("player") and scanner and scanner.playing:
 		scanner.stop()
+
+
+func _on_cooldown_timeout() -> void:
+	vision_area.monitoring = true
+	raycast.enabled = true
+	if vision_visual:
+		vision_visual.visible = true

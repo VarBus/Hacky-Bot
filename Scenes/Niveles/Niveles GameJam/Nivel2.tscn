@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cemnb8mpnb7g7"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_cavhk"]
+[ext_resource type="PackedScene" uid="uid://dfkqgh10ip0tm" path="res://Scenes/Niveles/Estructura_nivel.tscn" id="1_cavhk"]
 [ext_resource type="PackedScene" uid="uid://dilb15hs6mn7w" path="res://Characters/hacky.tscn" id="2_70iug"]
 [ext_resource type="PackedScene" uid="uid://bgt7spu1jcpfc" path="res://Scenes/Enemies/Hack/EH_RobotCamara.tscn" id="3_70iug"]
 [ext_resource type="PackedScene" uid="uid://c5wnr4u6rh07c" path="res://Scenes/Objetos/Puerta.tscn" id="4_bf6fx"]

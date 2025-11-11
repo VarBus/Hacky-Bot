@@ -50,4 +50,8 @@ shape = SubResource("RectangleShape2D_m3jt7")
 stream = ExtResource("3_82b5j")
 volume_db = 20.0
 
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="body_entered" from="Vision_Area2D" to="." method="_on_vision_area_2d_body_entered"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
