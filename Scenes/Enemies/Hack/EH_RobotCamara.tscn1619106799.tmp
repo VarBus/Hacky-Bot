@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgt7spu1jcpfc"]
+[gd_scene load_steps=6 format=3 uid="uid://bgt7spu1jcpfc"]
 
 [ext_resource type="Script" uid="uid://37qybc2cop23" path="res://Scripts/Enemies/Camara.gd" id="1_m3jt7"]
 [ext_resource type="Texture2D" uid="uid://gjie0t2607m" path="res://Assets/Sprites/enemies/camara.png" id="2_m3jt7"]
 [ext_resource type="AudioStream" uid="uid://bv5aodwr45f4b" path="res://Assets/Sounds/SFX/EnemyCameraScanning/movimiento-de-robot-44101.mp3" id="3_82b5j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m3jt7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3jt7"]
+size = Vector2(321, 20)
 
 [node name="EhRobotCamara" type="CharacterBody2D" node_paths=PackedStringArray("visual_node") groups=["hackable"]]
 script = ExtResource("1_m3jt7")
@@ -34,6 +37,14 @@ target_position = Vector2(113, 126)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(6, -1)
 shape = SubResource("CircleShape2D_m3jt7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_m3jt7")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_m3jt7")
 
 [node name="Scanner" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_82b5j")

@@ -228,8 +228,8 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8q3a"]
-size = Vector2(19.999998, 23.333332)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqpq4"]
+size = Vector2(13, 19.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s61ve"]
 radius = 130.0
@@ -263,8 +263,8 @@ sprite_frames = SubResource("SpriteFrames_qnf5x")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
-position = Vector2(7.947286e-07, -11.666666)
-shape = SubResource("RectangleShape2D_w8q3a")
+position = Vector2(-0.5, -9.75)
+shape = SubResource("RectangleShape2D_oqpq4")
 
 [node name="HackDetectionArea" type="Area2D" parent="."]
 
