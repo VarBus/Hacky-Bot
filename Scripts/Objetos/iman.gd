@@ -1,73 +1,130 @@
 extends HackableEntity
 
-# Nueva señal: habilita el auto de las plataformas
-signal platform_auto(active: bool, source: Node)
-
+# ============================================
+# CONFIGURACIÓN
+# ============================================
+## Grupo de las plataformas que serán afectadas
 @export var target_group: StringName = &"platform"
 
-var _inside_platforms: Array[Node] = []
+# ============================================
+# SEÑALES
+# ============================================
+## Emitida para activar/desactivar plataformas conectadas
+signal platform_auto(active: bool, source: Node)
+
+# ============================================
+# NODOS
+# ============================================
 @onready var gravity_area_player: Area2D = get_node_or_null("GravityAreaPlayer")
 
-var _last_gate := -1  # -1 = sin iniciar, 0 = off, 1 = on
+# ============================================
+# VARIABLES
+# ============================================
+var _inside_platforms: Array[Node] = []
+var _is_active: bool = false
 
+# ============================================
+# CICLO DE VIDA
+# ============================================
 func _ready() -> void:
-	pass
-	#if gravity_area_player:
-		#gravity_area_player.body_entered.connect(_on_gravity_area_player_body_entered)
-		#gravity_area_player.body_exited.connect(_on_gravity_area_player_body_exited)
+	# Configurar tipo de hackeo
+	hack_type = HackType.DISABLE
+	disable_duration = 1.0  # Activado por 2 segundos
+	
+	super._ready()
+	
+	if gravity_area_player:
+		gravity_area_player.body_entered.connect(_on_gravity_area_player_body_entered)
+		gravity_area_player.body_exited.connect(_on_gravity_area_player_body_exited)
+	else:
+		push_error("[Imán] No se encontró el nodo GravityAreaPlayer")
 
-func _physics_process(delta: float) -> void:
-	# Gate = solo ON mientras está hackeado
-	var gate := (1 if is_hacked else 0)
+# ============================================
+# HOOKS DE HACKEO
+# ============================================
+func _on_disabled() -> void:
+	# Cuando se "desactiva" (hackea), en realidad se ACTIVA el imán
+	print("[Imán] Activando campo magnético...")
+	_activate_magnet()
 
-	# Evita spam de señales
-	if gate != _last_gate:
-		_last_gate = gate
-		var active := gate == 1
-		print("[Iman] platform_auto=", active)
-		if _inside_platforms.size() > 0:
-			emit_signal("platform_auto", active, self)
+func _on_reactivated() -> void:
+	# Cuando se reactiva, apagar el imán
+	print("[Imán] Desactivando campo magnético...")
+	_deactivate_magnet()
 
-# (Opcional) si quieres controlar algo mientras está hackeado, hazlo aquí
-func _handle_hacked_input(delta: float) -> void:
-	# p.ej. con "shoot" podrías cambiar color o algo visual, pero el gate ya depende de is_hacked
-	pass
+# ============================================
+# CONTROL DEL IMÁN
+# ============================================
+func _activate_magnet() -> void:
+	_is_active = true
+	_emit_platform_signal(true)
 
-# Al soltar el control, forzamos gate OFF por si acaso
-func release_control() -> void:
-	super.release_control()
-	_last_gate = 0
-	emit_signal("platform_auto", false, self)
+func _deactivate_magnet() -> void:
+	_is_active = false
+	_emit_platform_signal(false)
 
-# --- Detección / conexión con plataformas ---
+func _emit_platform_signal(active: bool) -> void:
+	if _inside_platforms.size() > 0:
+		print("[Imán] Enviando señal platform_auto=%s a %d plataformas" % [active, _inside_platforms.size()])
+		platform_auto.emit(active, self)
+	else:
+		print("[Imán] No hay plataformas en rango")
+
+# ============================================
+# DETECCIÓN DE PLATAFORMAS
+# ============================================
 func _on_gravity_area_player_body_entered(body: Node2D) -> void:
-	if body.is_in_group(target_group):
-		if not _inside_platforms.has(body):
-			_inside_platforms.append(body)
-
-		if body.has_method("_on_magnet_platform_auto"):
-			var cb := Callable(body, "_on_magnet_platform_auto")
-			if not is_connected("platform_auto", cb):
-				var err := connect("platform_auto", cb)
-				if err != OK:
-					push_warning("No se pudo conectar con " + body.name + " err=" + str(err))
-			print("[Iman] Conectado a plataforma:", body.name)
-		else:
-			push_warning(body.name + " no implementa _on_magnet_platform_auto")
-
-		# Al entrar, envía el estado actual del gate (según is_hacked)
-		emit_signal("platform_auto", is_hacked, self)
+	if not body.is_in_group(target_group):
+		return
+	
+	print("[Imán] Plataforma detectada: ", body.name)
+	
+	# Agregar a lista
+	if not _inside_platforms.has(body):
+		_inside_platforms.append(body)
+	
+	# Conectar señal si tiene el método
+	if body.has_method("_on_magnet_platform_auto"):
+		var cb := Callable(body, "_on_magnet_platform_auto")
+		if not is_connected("platform_auto", cb):
+			var err := platform_auto.connect(cb)
+			if err == OK:
+				print("[Imán] ✓ Conectado a: ", body.name)
+			else:
+				push_warning("[Imán] ✗ Error al conectar con %s (código: %d)" % [body.name, err])
+		
+		# Enviar estado actual
+		body.call("_on_magnet_platform_auto", _is_active, self)
+	else:
+		push_warning("[Imán] La plataforma '%s' no tiene _on_magnet_platform_auto()" % body.name)
 
 func _on_gravity_area_player_body_exited(body: Node2D) -> void:
-	if body.is_in_group(target_group):
-		if _inside_platforms.has(body):
-			_inside_platforms.erase(body)
+	if not body.is_in_group(target_group):
+		return
+	
+	print("[Imán] Plataforma salió: ", body.name)
+	
+	# Remover de lista
+	if _inside_platforms.has(body):
+		_inside_platforms.erase(body)
+	
+	# Desconectar señal
+	var cb := Callable(body, "_on_magnet_platform_auto")
+	if is_connected("platform_auto", cb):
+		platform_auto.disconnect(cb)
+	
+	# Apagar plataforma al salir
+	if body.has_method("_on_magnet_platform_auto"):
+		body.call("_on_magnet_platform_auto", false, self)
 
-		var cb := Callable(body, "_on_magnet_platform_auto")
-		if is_connected("platform_auto", cb):
-			disconnect("platform_auto", cb)
-		print("[Iman] Desconectado de plataforma:", body.name)
-
-		# De cortesía, dejarla en OFF al salir
-		if body.has_method("_on_magnet_platform_auto"):
-			body.call("_on_magnet_platform_auto", false, self)
+# ============================================
+# UTILIDADES
+# ============================================
+## Debug info
+func _to_string() -> String:
+	return "[Imán] Active: %s | Hacked: %s | Platforms: %d | Time left: %.1fs" % [
+		_is_active,
+		is_hacked,
+		_inside_platforms.size(),
+		get_remaining_disable_time()
+	]

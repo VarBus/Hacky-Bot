@@ -15,7 +15,7 @@ position = Vector2(36, 214)
 hack_distance_max = 300.0
 
 [node name="EhRobotCamara" parent="." instance=ExtResource("3_70iug")]
-position = Vector2(2, 92)
+position = Vector2(21, 92)
 
 [node name="Puerta_llegada2" parent="." instance=ExtResource("4_bf6fx")]
 position = Vector2(283, 204)
