@@ -5,6 +5,32 @@ const Movement2DScript = preload("res://Scripts/Clases/MovementCharacters.gd")
 var mover := Movement2DScript.new()
 var direction: int = 0
 
+@onready var death_timer:Timer = $Muerte
+@export var slow_motion_duration: float = 0.5
+## Escala de tiempo durante el slow motion
+@export var slow_motion_scale: float = 0.5
+
+@onready var hurtbox: Area2D = $Hurtbox 
+
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	# Solo infligimos daño si NO estamos hackeados.
+	if is_hacked:
+		return
+		
+	if body.is_in_group("player"):
+		Engine.time_scale = slow_motion_scale
+		death_timer.start(slow_motion_duration)
+
+		# Llama a la función de daño/muerte del jugador.
+		# Asegúrate de que tu clase de jugador tiene una función para manejar su muerte.
+		# Por ejemplo, una función 'die()' o 'take_damage()'.
+		print("¡El enemigo ha chocado con el jugador y lo va a matar!")
+		# Ejemplo: body.die() o get_tree().reload_current_scene()
+		body.die() # <- Asume que el script del jugador tiene esta función.
+		
+
+
 func _physics_process(delta: float) -> void:
 	# Si estamos hackeados, la lógica de control la maneja el jugador
 	# a través de _handle_hacked_input.
@@ -61,3 +87,13 @@ func release_control() -> void:
 	# Al soltar el control, que mire en la dirección que se movía
 	direction = -1 if velocity.x <= 0 else 1
 	$AnimatedSprite2D.flip_h = direction > 0
+
+
+func _on_muerte_timeout() -> void:
+	Engine.time_scale = 1.0
+	print("[Cámara] Reiniciando nivel...")
+	_reload_level()
+	
+	
+func _reload_level() -> void:
+	get_tree().reload_current_scene()

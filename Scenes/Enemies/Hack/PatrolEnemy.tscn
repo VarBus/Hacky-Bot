@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfsyom2aujj5k"]
+[gd_scene load_steps=14 format=3 uid="uid://cfsyom2aujj5k"]
 
 [ext_resource type="Texture2D" uid="uid://d0dets1ao1boi" path="res://Assets/Sprites/PlaceHolders/0x72_16x16RobotTileset.v1.png" id="1_71ujy"]
 [ext_resource type="Script" uid="uid://dan4myjwccrf0" path="res://Scripts/Enemies/patrol_enemy.gd" id="1_gju12"]
@@ -75,6 +75,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gju12"]
 size = Vector2(10.5, 14.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7dm6"]
+size = Vector2(14, 17)
+
 [node name="PatrolEnemy" type="CharacterBody2D" node_paths=PackedStringArray("visual_node") groups=["hackable"]]
 scale = Vector2(2, 2)
 script = ExtResource("1_gju12")
@@ -90,3 +93,15 @@ frame_progress = 0.4561672
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.25, -7.25)
 shape = SubResource("RectangleShape2D_gju12")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_r7dm6")
+
+[node name="Muerte" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="timeout" from="Muerte" to="." method="_on_muerte_timeout"]

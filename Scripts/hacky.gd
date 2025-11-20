@@ -39,8 +39,8 @@ var is_hacking: bool = false
 # ============================================
 @export_group("Wall Jump")
 @export var wall_jump_speed: float = 300.0
-@export var wall_push_speed: float = 100.0
-@export var wall_slide_gravity: float = 200.0
+@export var wall_push_speed: float = 150.0
+@export var wall_slide_gravity: float = 300.0
 
 # ============================================
 # VARIABLES DE ESTADO
@@ -155,8 +155,7 @@ func _handle_normal_movement(delta: float) -> void:
 
 	# Salto de altura variable
 	if Input.is_action_just_released("ui_accept") and velocity.y < 0.0:
-		velocity.y *= 0.45
-
+		velocity.y *= 0.2
 	# Animación + SFX
 	_update_animation_and_audio(is_on_floor_now, is_on_wall_now, dir)
 
